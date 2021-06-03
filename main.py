@@ -7,3 +7,4 @@ if __name__ == "__main__":
 
     location = routes.Location("data/StationsHolland.csv")
     #scheme = location.get_location(1)
+

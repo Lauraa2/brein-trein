@@ -31,28 +31,4 @@ class Station():
         
         return stations
 
-"""
-    def load_destination(self, source_file):
-        
-        Load all the destinations into the loaded nodes.
-        
-        destinations = []
 
-        with open(source_file, 'r') as in_file:
-            reader = csv.DictReader(in_file)
-
-            for row in reader:
-                destinations.append(row['station2'])
-
-            #print(destinations)
-            
-            station1 = row['station1']
-
-            # Add the destination to the correct node
-            for destination in destinations:
-                destination = self.stations[destination]
-                self.stations[station1].add_destination(destination)
-
-            
-"""
-    
