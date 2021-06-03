@@ -17,16 +17,14 @@ class Location():
 
             for row in reader:
                 location[row['station'], row['y'], row['x']] = coordinates(row['station'], row['y'], row['x'])
-                #location[index].append(coordinates(row['station'], row['y'], x = row['x']))
+                #location[index].append(coordinates(row['station'], row['y'], x = row['x'])
 
-        #print(location)
-
-        print("    ")
-        for key, value in location.items():
-            print(key[0])
-            print(key[1])
-            print(key[2])
-            print(value)
+       # print("    ")
+        #for key, value in location.items():
+           # print(key[0])
+            #print(key[1])
+            #print(key[2])
+            #print(value)
 
 """
 def get_location(self, index):
