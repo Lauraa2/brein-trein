@@ -4,9 +4,13 @@ class Node():
         self.station1 = station1
         self.station2 = station2
         self.destinations = {}
+        self.distances = {}
 
-    def add_destination(self, node):
-        self.destinations[node.station1] = node
+    def add_destination(self, station):
+        self.destinations[station.station1] = station
+    
+    def add_distance(self, station):
+        self.distances[station.station1] = station
        
 
 
