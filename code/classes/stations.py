@@ -24,7 +24,7 @@ class Station():
             
         #stations.update(destinations)
 
-        print(len(stations))
+        print(stations)
         #print(destinations)
         #for key, value in stations.items():
          #   print(key[0])

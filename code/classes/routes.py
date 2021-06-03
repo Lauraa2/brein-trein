@@ -21,12 +21,7 @@ class Location():
 
         #print(location)
 
-        print("    ")
-        for key, value in location.items():
-            print(key[0])
-            print(key[1])
-            print(key[2])
-            print(value)
+        
 
 """
 def get_location(self, index):
