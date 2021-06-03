@@ -16,8 +16,6 @@ class Station():
 
             for row in reader:
                 stations[row['station']] = Node(row['station'])
-            
-            print(stations)
     
         return stations
 
