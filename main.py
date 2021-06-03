@@ -6,4 +6,4 @@ if __name__ == "__main__":
     test = stations.Station("data/ConnectiesHolland.csv")
 
     location = routes.Location("data/StationsHolland.csv")
-    scheme = location.get_location(1)
+    #scheme = location.get_location(1)

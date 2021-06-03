@@ -2,8 +2,6 @@ import csv
 
 from collections import defaultdict
 
-
-
 class Location():
     def __init__(self, source_file):
         self.location = self.load_location(source_file)
@@ -12,36 +10,41 @@ class Location():
         """
         Load all the nodes into the graph.
         """
-        location = defaultdict(list)
+        location = {}
 
         with open(source_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
 
-            rows = list(reader)
+            for row in reader:
+                location[row['station'], row['y'], row['x']] = coordinates(row['station'], row['y'], row['x'])
+                #location[index].append(coordinates(row['station'], row['y'], x = row['x']))
 
-            for row in enumerate(rows):
-                x = eval(row['x'])
-                y = eval(row['y'])
-                for x, y, index in row:
-                    location[index].append(coordinates(row['station'], x, y))
+        #print(location)
 
-        print(location)
+        print("    ")
+        for key, value in location.items():
+            print(key[0])
+            print(key[1])
+            print(key[2])
+            print(value)
 
-
+"""
 def get_location(self, index):
-        """
+        
         Returns the transmitters of a specific location.
-        """
+        
         if index in self.location:
             return self.location[index]
 
         raise KeyError("Location does not exist.")
-
+"""
 
 
 class coordinates():
     """
     Dataclass containing transmitter info.
     """
-    def __init__(self, station):
+    def __init__(self, station, x, y):
         self.station = station
+        self.x = x
+        self.y = y
