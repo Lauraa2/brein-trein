@@ -16,21 +16,15 @@ class Station():
             reader = csv.DictReader(in_file)
 
             for row in reader:
-                stations[row['station1']] = Node(row['station1'], row['station2'])
-        
-        print(stations)
-        
+                stations[row['station1']] = Node(row['station1'], row['station1'])
+                stations[row['station2']] = Node(row['station2'], row['station2'])
+
+        #print(stations)
         return stations
 
-<<<<<<< HEAD
-    def load_destinations(self, source_file):
-        """
-        Load all the neighbours into the loaded nodes.
-=======
     def load_destination(self, source_file):
         """
         Load all the destinations into the loaded nodes.
->>>>>>> 8c59e1ba16dd1116cec9a770679b63211e5c9414
         """
         with open(source_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
@@ -38,25 +32,11 @@ class Station():
             for row in reader:
                 destinations = []
                 destinations.append(row['station2'])
-<<<<<<< HEAD
 
-                #print(destinations)
-
-                #node_id = row['id']
-                station1 = row['station1']
-=======
-                
-                print(destinations)
-
-                station1 = row['station1']
+                station_id = row['station1']
+                print(station_id)
 
                 # Add the destination to the correct node
                 for destination in destinations:
-                    destination = self.stations[destination]
-                    self.stations[station1].add_destination(destination)
->>>>>>> 8c59e1ba16dd1116cec9a770679b63211e5c9414
-
-                # Add the neighbours to the correct node
-                for neighbour in neighbours:
-                    neighbour = self.nodes[neighbour]
-                    self.nodes[node_id].add_neighbour(neighbour)
+                    destination2 = self.stations[destination]
+                    self.stations[station_id].add_destination(destination2)
