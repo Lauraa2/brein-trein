@@ -16,7 +16,7 @@ class Station():
             reader = csv.DictReader(in_file)
 
             for row in reader:
-                stations[row['station1']] = Node(row['station1'], row['station1'])
+                stations[row['station1']] = Node(row['station1'])
 
         print(stations)
 
