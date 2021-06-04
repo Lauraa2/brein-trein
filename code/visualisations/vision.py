@@ -2,12 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from code.classes import stations
 import csv
-
-
-    
-
-    
-    #x = stations.coordinates
+ 
 
 data = []
 
@@ -17,15 +12,21 @@ with open('data/StationsHolland.csv', 'r') as in_file:
     reader = csv.DictReader(in_file)
 
     for row in reader:
-        coordinates[row['station']] = [row['x'], row['y']]
+        coordinates[row['station']] = [float(row['x']), float(row['y'])]
 
 
     for value in coordinates.values():
         data.append(value)
 
-    #print(data)
+    x, y = zip(*data)
+    print(x)
 
-    #data = [
+    plt.xlim(50, 53)
+    plt.ylim(3, 5)
+    plt.scatter(x, y)
+    plt.show()
+
+     #data = [
     #   [1, 2],
     #  [3, 2],
     # [4, 7],
@@ -35,10 +36,6 @@ with open('data/StationsHolland.csv', 'r') as in_file:
         #[6, 3],
         #[7, 5],
     #]
-
-    x, y = zip(*data)
-    plt.scatter(x, y)
-    plt.show()
 
 
     #fig, ax = plt.subplots()  # Create a figure containing a single axes.
