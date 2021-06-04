@@ -1,5 +1,5 @@
-
 class Node():
+<<<<<<< HEAD
 <<<<<<< HEAD
     def __init__(self, name, station1):
         self.name = name
@@ -15,6 +15,16 @@ class Node():
 
     def add_destination(self, node):
         self.destinations[node.station1] = node
+=======
+    def __init__(self, station):
+        self.station = station
+
+    def add_destination(self, station):
+        self.destinations[station.station1] = station
+    
+    def add_distance(self, station):
+        self.distances[station.station1] = station
+>>>>>>> 05fd63d43c15015eb847d509efb4799377cc762b
        
 
 
