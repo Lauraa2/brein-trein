@@ -17,6 +17,7 @@ class Location():
 
             for row in reader:
                 location[row['station'], row['y'], row['x']] = coordinates(row['station'], row['y'], row['x'])
+
                 #location[index].append(coordinates(row['station'], row['y'], x = row['x'])
 
         return location
@@ -25,6 +26,7 @@ class Location():
             #print(key[1])
             #print(key[2])
             #print(value)
+
 
 """
 def get_location(self, index):
