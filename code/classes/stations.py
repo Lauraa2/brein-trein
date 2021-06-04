@@ -43,13 +43,16 @@ class Station():
             
             for row in reader:
                 connections = []
+                distances = []
+                distance = row['distance']
                 connection = row['station2']
                 station = row['station1']
                 connections.append(connection)
+                distances.append(distance)
 
                 for connection in connections:
-                    connection = self.stations[connection]
-                    self.stations[station].add_connection(connection)
+                    self.stations[station].add_connection(station, connection, distance)
+           
                 
                 
                     
