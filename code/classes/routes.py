@@ -20,7 +20,7 @@ class Location():
 
                 #location[index].append(coordinates(row['station'], row['y'], x = row['x'])
 
-       # print("    ")
+        return location
         #for key, value in location.items():
            # print(key[0])
             #print(key[1])

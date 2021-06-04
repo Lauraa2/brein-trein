@@ -18,6 +18,7 @@ class Station():
 
             for row in reader:
                 stations[row['station']] = Node(row['station'])
+
                 coordinates[row['x']] = Node(row['x'])
                 coordinates[row['y']] = Node(row['y'])
             
