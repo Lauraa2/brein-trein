@@ -35,7 +35,6 @@ def get_location(self, index):
         
         if index in self.location:
             return self.location[index]
-
         raise KeyError("Location does not exist.")
 """
 
