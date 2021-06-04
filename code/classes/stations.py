@@ -26,8 +26,10 @@ class Station():
                 #coordinates[row['y']] = Node(row['y'])
             #print(stations)
 
-            print(coordinates)
-  
-            return stations
+            #print(coordinates)
+
+        return coordinates
+        #return stations
+
 
 
