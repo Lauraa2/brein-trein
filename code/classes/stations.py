@@ -3,12 +3,11 @@ from .node import Node
 
 
 
-
 class Station():
     def __init__(self):
         self.stations = self.load_station()
         self.load_connections()
-        #self.coordinates = {}
+        
         
     def load_station(self):
         """
@@ -31,8 +30,6 @@ class Station():
             #print(stations)
         #return stations
 
-
-        return coordinates
         return stations 
 
     def load_connections(self):
@@ -52,7 +49,23 @@ class Station():
                 distances.append(distance)
 
                 for connection in connections:
-                    self.stations[station].add_connection(station, connection, distance)
+                    self.stations[station].add_connection(connection, distance)
+                    self.stations[connection].add_connection(station, distance)
+    
+    def print_csv(self):
+        """
+        Method to print the csv file with output
+        """
+        with open('data.csv', 'w', newline='') as csvfile:
+            fieldnames = ['train', 'stations', 'connection']
+            thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
+            thewriter.writeheader()
+            trains_count = 0
+
+            for node in self.stations.values():
+                trains_count += 1
+                thewriter.writerow({'train': trains_count, 'stations': node.station, 'connections': node.connections})
+                
            
                 
                 

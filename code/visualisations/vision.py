@@ -3,14 +3,14 @@ import numpy as np
 from code.classes import stations
 import csv
 
-x = stations.Station.load_station.coordinates
+#x = stations
 
-data = []
+#data = []
 
-for value in x.values():
-    data.append(value)
+#for value in x.values():
+ #   data.append(value)
 
-print(data)
+#print(data)
 
 #data = [
  #   [1, 2],
@@ -23,9 +23,9 @@ print(data)
     #[7, 5],
 #]
 
-x, y = zip(*data)
-plt.scatter(x, y)
-plt.show()
+#x, y = zip(*data)
+#plt.scatter(x, y)
+#plt.show()
 
 
 #fig, ax = plt.subplots()  # Create a figure containing a single axes.
