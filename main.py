@@ -4,7 +4,10 @@ import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
 
+    #x = stations.coordinates
+
     # Create a graph from our data
+    #stations = stations.Station()
     test = stations.Station()
 
     location = routes.Location("data/StationsHolland.csv")

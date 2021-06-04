@@ -2,7 +2,7 @@ import csv
 from .node import Node
 
 
-
+#coordinates = {}
 
 class Station():
     def __init__(self):
@@ -32,8 +32,7 @@ class Station():
         #return stations
 
 
-        return coordinates
-        return stations 
+        return coordinates, stations 
 
     def load_connections(self):
         """
