@@ -2,10 +2,13 @@ import csv
 from .node import Node
 
 
+
+
 class Station():
     def __init__(self):
         self.stations = self.load_station()
         self.load_connections()
+        #self.coordinates = {}
         
     def load_station(self):
         """
@@ -26,14 +29,10 @@ class Station():
                 #coordinates[row['x']] = Node(row['x'])
                 #coordinates[row['y']] = Node(row['y'])
             #print(stations)
-
-<<<<<<< HEAD
-            #print(coordinates)
-
-        return coordinates
         #return stations
 
-=======
+
+        return coordinates
         return stations 
 
     def load_connections(self):
@@ -61,7 +60,6 @@ class Station():
             
             
 
-            
->>>>>>> 8e99c0604e5e8bf88db41eac96d7ed2b15e4010d
+
 
 
