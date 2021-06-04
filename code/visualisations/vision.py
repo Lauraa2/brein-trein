@@ -10,32 +10,32 @@ import csv
 #plt.scatter(x, y)
 #plt.show()
 
-#coordinates = {}
+coordinates = {}
 
-#with open('data/StationsHolland.csv', 'r') as in_file:
-#    reader = csv.DictReader(in_file)
+with open('data/StationsHolland.csv', 'r') as in_file:
+    reader = csv.DictReader(in_file)
 
-#    for row in reader:
-#        coordinates[row['station']] = [row['x'], row['y']]
+    for row in reader:
+        coordinates[row['station']] = [row['x'], row['y']]
 
-#coordinatesdict = coordinates
-#data = []
+coordinatesdict = coordinates
+data = []
 
-#for value in coordinatesdict.values():
-#    data.append(value)
+for value in coordinatesdict.values():
+    data.append(value)
 
 #print(data)
 
-data = [
-    [1, 2],
-    [3, 2],
-    [4, 7],
-    [2, 4],
-    [2, 1],
-    [5, 6],
-    [6, 3],
-    [7, 5],
-]
+#data = [
+#    [1, 2],
+#    [3, 2],
+#    [4, 7],
+#    [2, 4],
+#    [2, 1],
+#    [5, 6],
+#    [6, 3],
+#    [7, 5],
+#]
 
 x, y = zip(*data)
 plt.scatter(x, y)

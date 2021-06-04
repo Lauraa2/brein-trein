@@ -27,13 +27,6 @@ class Station():
                 #coordinates[row['y']] = Node(row['y'])
             #print(stations)
 
-<<<<<<< HEAD
-            #print(coordinates)
-
-        return coordinates
-        #return stations
-
-=======
         return stations 
 
     def load_connections(self):
@@ -62,6 +55,5 @@ class Station():
             
 
             
->>>>>>> 8e99c0604e5e8bf88db41eac96d7ed2b15e4010d
 
 
