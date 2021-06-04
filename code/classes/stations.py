@@ -30,7 +30,8 @@ class Station():
             #print(stations)
         #return stations
 
-        return stations 
+
+        return coordinates, stations 
 
     def load_connections(self):
         """
