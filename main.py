@@ -5,12 +5,14 @@ import matplotlib.pyplot as plt
 if __name__ == "__main__":
 
     # Create a graph from our data
-    test = stations.Station("data/StationsHolland.csv")
+    test = stations.Station()
 
     location = routes.Location("data/StationsHolland.csv")
+
+
     #scheme = location.get_location(1)
 
     # Create visualisation from our data
-    visions = vision(location)
+    
     
 
