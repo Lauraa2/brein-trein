@@ -19,13 +19,15 @@ class Station():
             for row in reader:
                 stations[row['station']] = Node(row['station'])
 
-                coordinates[row['x']] = Node(row['x'])
-                coordinates[row['y']] = Node(row['y'])
-            
-        print(stations)
+                coordinates[row['station']] = [row['x'], row['y']]
+                #coordinates[row['station']] = row['y']
+                
+                #coordinates[row['x']] = Node(row['x'])
+                #coordinates[row['y']] = Node(row['y'])
+            #print(stations)
 
-        print(coordinates)
+            print(coordinates)
   
-        return stations
+            return stations
 
 
