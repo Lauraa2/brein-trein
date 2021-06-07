@@ -10,7 +10,9 @@ if __name__ == "__main__":
     #stations = stations.Station()
     test = network.Network()
     test.print_csv()
-   # test.print_stations()
+
+    vision = vision.print_stations(test.stations)
+    #vision.print_stations()
 
     #scheme = location.get_location(1)
 

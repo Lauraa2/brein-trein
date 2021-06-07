@@ -7,16 +7,16 @@ coordinates = {}
 data = []
 
 def print_stations(test):
-    print(test)
-    
-with open('data/StationsHolland.csv', 'r') as in_file:
-    reader = csv.DictReader(in_file)
 
-    for row in reader:
-        coordinates[row['station']] = [float(row['x']), float(row['y'])]
 
-    for value in coordinates.values():
-        data.append(value)
+    for key,value in test.items():
+        print("Key : {} , Value : {}".format(key,value.x))
+        data.append([float(value.x), float(value.y)])
+       
+
+    print(data)
+
+   
 
     y, x = zip(*data)
     plt.ylim(51.5, 53)
