@@ -1,7 +1,7 @@
 import csv
-from .node import Node
+from .station import Station
 
-class Station():
+class Network():
     def __init__(self):
         self.stations = self.load_station()
         self.load_connections()        
@@ -11,17 +11,14 @@ class Station():
         Load all the stations
         """
         stations = {}
-        coordinates = {}
 
         with open("data/StationsHolland.csv", 'r') as in_file:
             reader = csv.DictReader(in_file)
 
             for row in reader:
-                stations[row['station']] = Node(row['station'])
+                stations[row['station']] = Station(row['station'], row['x'], row['y'])
 
-                coordinates[row['station']] = [row['x'], row['y']]
-
-        return coordinates, stations 
+        return stations 
 
     def load_connections(self):
         """
@@ -42,20 +39,20 @@ class Station():
                 for connection in connections:
                     self.stations[station].add_connection(connection, distance)
                     self.stations[connection].add_connection(station, distance)
-    
+
     def print_csv(self):
         """
         Method to print the csv file with output
         """
         with open('data.csv', 'w', newline='') as csvfile:
-            fieldnames = ['train', 'stations', 'connection']
+            fieldnames = ['train', 'stations', 'connections', 'y', 'x']
             thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
             thewriter.writeheader()
             trains_count = 0
 
-            for node in self.stations.values():
+            for station in self.stations.values():
                 trains_count += 1
-                thewriter.writerow({'train': trains_count, 'stations': node.station, 'connections': node.connections})
+                thewriter.writerow({'train': trains_count, 'stations': station.name, 'connections': station.connections, 'y': station.x, 'x': station.y})
                 
            
                 

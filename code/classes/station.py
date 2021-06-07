@@ -1,8 +1,11 @@
 import csv
+from os import X_OK
 
-class Node():
-    def __init__(self, station):
-        self.station = station
+class Station():
+    def __init__(self, name, x, y):
+        self.name = name
+        self.x = x 
+        self.y = y
         self.connections = {}
         
     def add_connection(self, connection, distance):

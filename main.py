@@ -1,4 +1,4 @@
-from code.classes import stations, node
+from code.classes import network, station
 from code.visualisations import vision
 import matplotlib.pyplot as plt
 
@@ -8,8 +8,11 @@ if __name__ == "__main__":
 
     # Create a graph from our data
     #stations = stations.Station()
-    test = stations.Station()
+    test = network.Network()
     test.print_csv()
+
+    vision = vision.print_stations(test.stations)
+    #vision.print_stations()
 
     #scheme = location.get_location(1)
 

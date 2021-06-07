@@ -1,24 +1,24 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from code.classes import stations
+from code.classes import network
 import csv
 
 coordinates = {}
 data = []
 
-with open('data/StationsHolland.csv', 'r') as in_file:
-    reader = csv.DictReader(in_file)
-
-    for row in reader:
-        coordinates[row['station']] = [float(row['x']), float(row['y'])]
+def print_stations(test):
 
 
-    for value in coordinates.values():
-        data.append(value)
+    for key,value in test.items():
+        print("Key : {} , Value : {}".format(key,value.x))
+        data.append([float(value.x), float(value.y)])
+       
+
+    print(data)
+
+   
 
     y, x = zip(*data)
-    print(x)
-
     plt.ylim(51.5, 53)
     plt.xlim(4.2, 5)
     plt.scatter(x, y)
