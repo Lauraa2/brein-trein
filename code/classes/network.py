@@ -1,5 +1,8 @@
 import csv
 from .station import Station
+from .routes import Routes
+import random
+
 
 class Network():
     def __init__(self):
@@ -40,6 +43,7 @@ class Network():
                     self.stations[station].add_connection(connection, distance)
                     self.stations[connection].add_connection(station, distance)
 
+
     def print_csv(self):
         """
         Method to print the csv file with output
@@ -53,7 +57,11 @@ class Network():
             for station in self.stations.values():
                 trains_count += 1
                 thewriter.writerow({'train': trains_count, 'stations': station.name, 'connections': station.connections, 'y': station.x, 'x': station.y})
+
+
     
+
+
                 
            
                 
