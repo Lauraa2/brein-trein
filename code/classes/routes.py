@@ -13,22 +13,18 @@ class Routes():
         station = random.choice(networks)
         stations.append(station)
 
-        next = list(station[1].connections.items())
-        print(next)
+        while duration <= 120:
+            next = list(stations[-1][1].connections.items())
+            print(next)
+            next_random = random.choice(next)
 
-        next_random = random.choice(next)
+            for network in networks:
+                if next_random[0] == network[0]:
+                    stations.append(network)
 
-        for network in networks:
-            if next_random == network[0]:
-                stations.append(network)
-                print(network)
-
-        duration += int(next_random[1])
+            duration += int(next_random[1])
 
         print(duration)
-
-        print(station)
-        print(next_random)
         print(stations)
 
     
