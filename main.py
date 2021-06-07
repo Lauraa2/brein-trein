@@ -13,7 +13,7 @@ if __name__ == "__main__":
     test.print_csv()
     #test.get_random_station()
 
-    routes = Routes.get_random_station(test.stations)
+    routes = Routes.get_random_routes(test.stations)
 
     vision = vision.print_stations(test.stations)
     #vision.print_stations()

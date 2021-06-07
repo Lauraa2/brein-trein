@@ -3,22 +3,30 @@ import random
 #from .network import Network
 
 class Routes():
-    def __init__(self, start, destination, duration):
-        self.start = start
-        self.destination = destination
-        self.duration = int(duration)
-        
-        self.stations = []
-        self.get_random_station()
+    def __init__(self):
+        self.routes = self.get_random_routes()
 
-    def get_random_station(test):
-        entry_list = list(test.items())
-        station = random.choice(entry_list)
+    def get_random_routes(test):
+        duration = 0
+        stations =[]
+        networks = list(test.items())
+        station = random.choice(networks)
         stations.append(station)
-      
+
+        while duration <= 120:
+            next = list(stations[-1][1].connections.items())
+            print(next)
+            next_random = random.choice(next)
+
+            for network in networks:
+                if next_random[0] == network[0]:
+                    stations.append(network)
+
+            duration += int(next_random[1])
+
+        print(duration)
         print(stations)
 
-    #def add_random_station(self, start):
-     #   self.stations.append(start)
+    
 
 
