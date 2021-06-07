@@ -16,10 +16,11 @@ with open('data/StationsHolland.csv', 'r') as in_file:
     for value in coordinates.values():
         data.append(value)
 
-    x, y = zip(*data)
+    y, x = zip(*data)
     print(x)
 
-    plt.xlim(50, 53)
-    plt.ylim(3, 5)
+    plt.ylim(51.5, 53)
+    plt.xlim(4.2, 5)
     plt.scatter(x, y)
+    plt.savefig("plot.png")
     plt.show()
