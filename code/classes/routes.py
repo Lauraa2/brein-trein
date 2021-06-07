@@ -17,7 +17,11 @@ class Routes():
         print(next)
 
         next_random = random.choice(next)
-        stations.append(next_random)
+
+        for network in networks:
+            if next_random == network[0]:
+                stations.append(network)
+                print(network)
 
         duration += int(next_random[1])
 
@@ -27,7 +31,6 @@ class Routes():
         print(next_random)
         print(stations)
 
-    #def add_random_station(self, start):
-     #   self.stations.append(start)
+    
 
 
