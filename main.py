@@ -13,6 +13,5 @@ if __name__ == "__main__":
     #scheme = location.get_location(1)
 
     # Create visualisation from our data
-    
-    
+    #visions = vision(location)
 

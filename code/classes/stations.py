@@ -44,16 +44,4 @@ class Station():
 
                 for connection in connections:
                     connection = self.stations[connection]
-                    self.stations[station].add_connection(connection)
-                
-                
-                    
-            
-                
-
-            
-            
-
-            
-
-
+                    self.stations[station].add_connection(connection) 
