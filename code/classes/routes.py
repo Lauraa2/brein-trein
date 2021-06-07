@@ -4,9 +4,9 @@ import random
 
 class Routes():
     def __init__(self):
-        self.routes = self.get_random_station()
+        self.routes = self.get_random_routes()
 
-    def get_random_station(test):
+    def get_random_routes(test):
         stations =[]
         networks = list(test.items())
         station = random.choice(networks)
