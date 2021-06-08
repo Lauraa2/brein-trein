@@ -1,4 +1,5 @@
 from code.classes import network, routes
+from code.algorithms import random
 from code.classes.routes import Routes
 from code.visualisations import vision
 import matplotlib.pyplot as plt
@@ -13,8 +14,9 @@ if __name__ == "__main__":
     test.print_csv()
     #test.get_random_station()
 
+    test2 = random.get_random_routes(test.stations)
 
-    test1 = routes.Routes.get_random_routes(test.stations)
+    #test1 = routes.Routes.get_random_routes(test.stations)
     #test1.print_results()
 
     #print = Routes.print_results(test.stations)
