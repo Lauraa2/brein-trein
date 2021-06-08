@@ -14,7 +14,7 @@ if __name__ == "__main__":
     #test.get_random_station()
 
 
-    test1 = Routes.get_random_routes(test.stations)
+    test1 = routes.Routes.get_random_routes(test.stations)
     #test1.print_results()
 
     #print = Routes.print_results(test.stations)
