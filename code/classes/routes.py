@@ -45,6 +45,7 @@ class Routes():
                         stations.append(network)
 
             duration += int(next_random[1])
+        print(stations)
         return stations
     
     def print_results(self):
