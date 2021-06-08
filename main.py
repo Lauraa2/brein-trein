@@ -14,7 +14,7 @@ if __name__ == "__main__":
     #test.get_random_station()
 
     routes = Routes.get_random_routes(test.stations)
-
+    #routes2 = Routes.get_all_routes
     vision = vision.print_stations(test.stations)
     #vision.print_stations()
 
