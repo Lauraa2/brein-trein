@@ -19,4 +19,4 @@ def print_stations(test):
     plt.xlim(4.2, 5)
     plt.scatter(x, y)
     plt.savefig("plot.png")
-    plt.show()
+    #plt.show()

@@ -1,89 +1,61 @@
 from .station import Station
 import random
+import csv
 #from .network import Network
 
 class Routes():
     def __init__(self):
         self.routes = self.get_random_routes()
-        #self.routes2 = self.get_all_routes(start, destination, du)
+        self.print_results()
 
     def get_random_routes(test):
-        duration = 0
-        stations =[]
-        networks = list(test.items())
-        station = random.choice(networks)
-        routes = []
-        #print(station)
-        #stations.append(station)
-        
-        for test in networks:
-            start_station = test
-            i = 0
-            route = []
-            while True: 
-                stations.append(start_station)
-                connections = list(stations[-1][1].connections.items())
-                print(connections)
-                self.get_random_routes(test)
+        routes = {}
+        counter = 0
+        while len(routes) < 7:
+            duration = 0
+            stations =[]
+            networks = list(test.items())
+            station = random.choice(networks)
+            stations.append(station)
 
-                connection = connections[i][1] 
+            while duration <= 120:
+                next = list(stations[-1][1].connections.items())
+                next_random = random.choice(next)
 
-                if start_station == connection:
-                    return [route]
+                for station in stations: 
+                    while next_random[0] == station[0]:
+                        next_random = random.choice(next)
+                        break
 
-                if i == (len(connections) - 1):
-                    return False
-                i += 1
-            
-                route = route + [start_station]
+                for network in networks:
+                    if next_random[0] == network[0]:
+                        stations.append(network)
 
-                print(start_station)
-                start_station = connection
-                stations = []
-                return True
-                print(start_station)
-                return False
-                #print(route)
+                duration += int(next_random[1])
 
-                #print(station)
-                
-                # for connection in connections:
-                    
-                #     start_station = connection[1]
+                if duration >= 120:
+                    counter += 1
+                    routes[counter] = stations
+                    break
 
-                #     print(connection[1])
-                #     return False
+        print(counter)
+        print(routes)
 
-                    #return False
-        # while duration <= 120:
-        #next = list(stations[-1][1].connections.items())
-        #print(next)
-        #     next_random = random.choice(next)
+        return routes
+    
+    def print_results(self):
+        """
+        Method to print a csv file with results
+        """
+        with open('results.csv', 'w', newline='') as csvfile:
+            fieldnames = ['train', 'traject']
+            thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
+            thewriter.writeheader()
+            trains_count = 0
 
-        #     for network in networks:
-        #         if next_random[0] == network[0]:
-        #             stations.append(network)
-
-            #duration += int(next_random[1])
-        #print(networks)
-        # print(station)
-        # print(stations[-1][1])
-        # print(list(stations[-1][1].connections.values())[0])
-        # print(stations[-1][1].connections.keys())
-        #print(duration)
-        #print(stations)
-
-    def get_all_routes(self, start, destination, duration=0):
-        routes = routes + start
-        networks = list(test.items())
-        print(networks)
-
-        for station in networks:
-
-
-            print(station)
-
-
+            for route in self.routes.values():
+                trains_count += 1
+                thewriter.writerow({'train': trains_count, 'traject': route})
     
 
 
