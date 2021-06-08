@@ -15,6 +15,8 @@ if __name__ == "__main__":
     #test.get_random_station()
 
     test2 = random.get_random_routes(test.stations)
+    test3 = routes.print_results(test2)
+    #print = routes.Routes.print_results(test2)
 
     #test1 = routes.Routes.get_random_routes(test.stations)
     #test1.print_results()
