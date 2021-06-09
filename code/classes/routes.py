@@ -37,6 +37,3 @@ def print_results(test2):
             thewriter.writerow({'train': trains_count, 'route': routes})
 
 
-        
-
-

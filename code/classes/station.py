@@ -9,16 +9,7 @@ class Station():
         self.connections = {}
         
     def add_connection(self, connection, distance):
-        self.connections[connection] = distance
-
-    
-    
-        
-
-
-
-
-    
+        self.connections[connection] = distance   
        
 
 
