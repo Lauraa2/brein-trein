@@ -55,9 +55,9 @@ def print_stations(test, test2):
 
     for traject in trajecten:
         for station in traject:
-            if station[0] in dictionary:
-                data.append(dictionary[station[0]])
-                print(dictionary[station[0]])
+            if station in dictionary:
+                data.append(dictionary[station])
+                print(dictionary[station])
 
         y, x = zip(*data)
         plt.ylim(51.5, 53)

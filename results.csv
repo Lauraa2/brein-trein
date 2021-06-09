@@ -1,6 +1,7 @@
 train,route
-1,"[('Schiphol Airport', <code.classes.station.Station object at 0x7f9f96b2ba30>), 'Leiden Centraal', 'Heemstede-Aerdenhout', 'Haarlem', 'Beverwijk', 'Castricum', 'Alkmaar', 'Den Helder']"
-2,"[('Dordrecht', <code.classes.station.Station object at 0x7f9f96b2b520>), 'Rotterdam Centraal', 'Schiedam Centrum', 'Delft', 'Den Haag Centraal', 'Gouda', 'Rotterdam Alexander']"
-3,"[('Amsterdam Zuid', <code.classes.station.Station object at 0x7f9f96b2b1c0>), 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel']"
-4,"[('Hoorn', <code.classes.station.Station object at 0x7f9f96b2b760>), 'Zaandam']"
-5,"[('Alphen a/d Rijn', <code.classes.station.Station object at 0x7f9f96b27f70>), 'Leiden Centraal']"
+1,"['Rotterdam Alexander', 'Rotterdam Centraal', 'Schiedam Centrum', 'Delft', 'Den Haag Centraal', 'Leiden Centraal', 'Alphen a/d Rijn', 'Gouda']"
+2,"['Haarlem', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Zuid', 'Schiphol Airport']"
+3,"['Heemstede-Aerdenhout', 'Haarlem']"
+4,"['Den Helder', 'Alkmaar', 'Hoorn', 'Zaandam', 'Beverwijk']"
+5,"['Castricum', 'Zaandam']"
+6,"['Dordrecht', 'Rotterdam Centraal']"

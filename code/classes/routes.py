@@ -27,7 +27,6 @@ def print_results(test2):
         print(test2)
         
         
-        #for key,value in test2.items():
         for key,value in test2.items():
             routess = []
             print(value.stations)
