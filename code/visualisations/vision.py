@@ -11,14 +11,10 @@ data = []
 trajecten = []
 dictionary = {}
 
-
 def print_stations(test, test2):
 
     for key,value in test2.items():
-        print(test2.items())
-        print(" ")
         trajecten.append(value.stations)
-        print(trajecten)
 
     for key,value in test.items():
         dictionary[key] = [float(value.x), float(value.y)]
@@ -28,7 +24,6 @@ def print_stations(test, test2):
     for i in colors:
         random_color = random.choice(colors)
         colors.remove(random_color)
-        print(random_color)
 
 
     k = 0
@@ -37,7 +32,6 @@ def print_stations(test, test2):
         for station in traject:
             if station in dictionary:
                 data.append(dictionary[station])
-                print(dictionary[station])
     
         y, x = zip(*data)
         plt.ylim(51.5, 53)

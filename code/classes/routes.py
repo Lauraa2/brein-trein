@@ -23,17 +23,13 @@ def print_results(test2):
         thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
         thewriter.writeheader()
         trains_count = 0
-
-        print(test2)
-        
         
         for key,value in test2.items():
-            routess = []
-            print(value.stations)
+            routes = []
             trains_count += 1
             for station in value.stations:
                 route = station
-                routess.append(route)    
-            thewriter.writerow({'train': trains_count, 'route': routess})
+                routes.append(route)    
+            thewriter.writerow({'train': trains_count, 'route': routes})
 
 
