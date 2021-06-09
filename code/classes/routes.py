@@ -6,24 +6,34 @@ class Routes():
     def __init__(self, stations):
         self.stations = stations
         self.routes = {}
-        self.print_results()
     
     def add_routes(self, train, stations):
+        """
+        Method to add routes to the routes dictionary
+        """
         self.routes[train] = stations
-        print(self.routes)
+        return self.routes
 
-    def print_results(self):
-        """
-        Method to print a csv file with results
-        """
-        with open('results.csv', 'w', newline='') as csvfile:
-            fieldnames = ['train', 'traject']
-            thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
-            thewriter.writeheader()
-            trains_count = 0
+def print_results(test2):
+    """
+    Method to print a csv file with results
+    """
+    with open('results.csv', 'w', newline='') as csvfile:
+        fieldnames = ['train', 'route']
+        thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
+        thewriter.writeheader()
+        trains_count = 0
 
-            for route in self.routes.values():
-                trains_count += 1
-                thewriter.writerow({'train': trains_count, 'traject': route})
+        print(test2)
+        
+        
+        for key,value in test2.items():
+            routes = []
+            print(value.stations)
+            trains_count += 1
+            for station in value.stations:
+                route = station[0]
+                routes.append(route)    
+            thewriter.writerow({'train': trains_count, 'route': routes})
 
 
