@@ -5,14 +5,14 @@ import copy
 def get_random_routes(test):
 
         # laad een lege dictionary om routes in te stoppen
-        routes = {}
+        routes_trajecten = {}
         counter = 0
 
         # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
         copy_stations = copy.deepcopy(test)
         copy_stations_list = copy.deepcopy(list(copy_stations.items()))
 
-        while len(routes) < 7 and len(copy_stations) != 0:
+        while len(routes_trajecten) < 7 and len(copy_stations) != 0:
             #     duration = 0
 
             # maak een lege lijst aan voor stationnen en routes
@@ -82,10 +82,13 @@ def get_random_routes(test):
                         route.append(connection_end)
 
                     counter += 1
-                    routes[counter] = route
-                    print(routes)
+                    # routes_trajecten[counter] = route
+                    routes_trajecten[counter] = Routes(route)
+                    routes_trajecten[counter].add_routes(counter, route)
+                    print(routes_trajecten)
                     break
         print(copy_stations)
+        return routes_trajecten
 
         #     print(connections_start_station) #lijst met connections [('Amsterdam Amstel', '8'), ('Amsterdam Sloterdijk', '6')]
             
