@@ -25,6 +25,5 @@ class Routes():
             for route in self.routes.values():
                 trains_count += 1
                 thewriter.writerow({'train': trains_count, 'traject': route})
-    
 
 

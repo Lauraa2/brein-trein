@@ -59,6 +59,7 @@ class Network():
                 thewriter.writerow({'train': trains_count, 'stations': station.name, 'connections': station.connections, 'y': station.x, 'x': station.y})
 
 
+
     
 
            
