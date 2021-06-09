@@ -102,7 +102,6 @@ def get_random_routes(network):
                 # voeg de route toe aan de dictionary van routes
                 routes_trajecten[counter] = Routes(route)
                 routes_trajecten[counter].add_routes(counter, route)
-                print(routes_trajecten)
                 break
 
     return routes_trajecten

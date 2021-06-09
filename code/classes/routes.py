@@ -23,13 +23,9 @@ def print_results(test2):
         thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
         thewriter.writeheader()
         trains_count = 0
-
-        print(test2)
-        
         
         for key,value in test2.items():
             routes = []
-            print(value.stations)
             trains_count += 1
             for station in value.stations:
                 route = station
