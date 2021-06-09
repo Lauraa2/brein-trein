@@ -20,8 +20,9 @@ def get_random_routes(test):
             route = []
             
             # pak een random station uit de lijst met stationnentjes
-            start_station = random.choice(copy_stations_list) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
-            
+            # start_station = random.choice(copy_stations_list) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
+            start_station = random.choice(list(copy_stations.items())) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
+
             # geeft de naam van het object zelf bijv. 'Amsterdam Centraal'
             start_station_name = start_station[0] 
         
@@ -30,22 +31,28 @@ def get_random_routes(test):
 
             # voeg het station toe aan een lijst die de connecties gaat laden 
             stations.append(start_station)
-
+            
+            print(start_station_name)
+            # verwijder deze vervolgens weer uit de lijst met stationnentjes zodat we geen dubbele stations krijgen
+            del copy_stations[start_station_name] # delete een station uit de lijst met stationnetjes 
+            
             # set de tijd op 0 voor een nieuw traject
             time = 0
 
+            connections_start_station = list(stations[-1][1].connections.items())
+
             # zolang de tijd onder twee uur is en er een station beschikbaar is gaan we routes toevoegen
-            while time < 120 and start_station[0] in copy_stations:
-            
+            #while time < 120 and start_station[0] in copy_stations:
+            while time < 120:
                 # verwijder deze vervolgens weer uit de lijst met stationnentjes zodat we geen dubbele stations krijgen
-                del copy_stations[start_station[0]] # delete een station uit de lijst met stationnetjes 
+                # del copy_stations[start_station[0]] # delete een station uit de lijst met stationnetjes 
                 
                 # geef aan dat de route nog niet af is en de tijd is nog 0
                 connection_end = False
-                time_end = 0
+                #time_end = 0
 
                 # laad alle connections van het start station in
-                connections_start_station = list(stations[-1][1].connections.items())
+                #connections_start_station = list(stations[-1][1].connections.items())
                 print(connections_start_station)
 
                 # pak een random connectie uit die lijst en sla ook de tijd op
@@ -64,8 +71,8 @@ def get_random_routes(test):
                     # de tijd van de route mag niet over het maximum heen, als dat lukt slaan we de connectie op
                     if time + time_route < 120 and random_connection_name in copy_stations: 
                         connection_end = random_connection_name
-                        time_end = time_route
-                        break
+                        #connections_start_station.remove(random_connection)
+                        #time_end = time_route
                     else:
                         # als dat niet kan, verwijderen we de connectie uit de mogelijke connectie lijst
                         connections_start_station.remove(random_connection)
@@ -90,7 +97,7 @@ def get_random_routes(test):
 
                     # laad dit station in stations
                     stations.append(start_station)
-
+                    
                 else:
                     # als de lengt van de route uit een enkel station bestaat, voegen we er een toe
                     if len(route) < 2:
@@ -108,7 +115,6 @@ def get_random_routes(test):
                     break
 
         return routes_trajecten
-
         #     print(connections_start_station) #lijst met connections [('Amsterdam Amstel', '8'), ('Amsterdam Sloterdijk', '6')]
             
         #     print(random_connection)
