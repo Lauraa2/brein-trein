@@ -30,8 +30,8 @@ def print_stations(test, test2):
     for traject in trajecten:
         k += 1
         for station in traject:
-            if station in dictionary:
-                data.append(dictionary[station])
+            if station[0] in dictionary:
+                data.append(dictionary[station[0]])
     
         y, x = zip(*data)
         plt.ylim(51.5, 53)
