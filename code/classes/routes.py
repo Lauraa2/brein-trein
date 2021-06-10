@@ -33,7 +33,7 @@ def print_results(routes_random):
             for station in value.stations:
                 route = station[0]
                 routes.append(route)    
-            thewriter.writerow({'train': trains_count, 'route': routes, 'score': key[1]})
+            thewriter.writerow({'train': trains_count, 'route': routes})
 
 
 

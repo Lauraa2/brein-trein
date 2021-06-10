@@ -73,6 +73,7 @@ def get_random_routes(network, connections):
                 counter += 1
                 K = 0
                 # voeg de route toe aan de dictionary van routes 
+                #routes[counter] = Routes(stations, K)
                 routes[counter] = Routes(stations, K)
                 routes[counter].add_routes(counter, stations, K) 
                 total_time += time
@@ -81,7 +82,7 @@ def get_random_routes(network, connections):
     p = len(connections_used)/len(copy_connections)
     K = p*10000 - (counter*100 + total_time)
     print(K)
-    stations = []
-    routes[counter] = Routes(stations, K)
+    #stations = []
+    #routes[counter] = Routes(stations, K)
 
     return routes
