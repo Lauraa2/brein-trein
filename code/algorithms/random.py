@@ -43,7 +43,6 @@ def get_random_routes(network, connections):
         while time <= 120:
 
             connections_start_station = list(stations[-1][1].connections.items())
-            new_station = stations[-1][0]
             random_connection = random.choice(connections_start_station)
 
             random_connection_name = random_connection[0]
@@ -52,14 +51,14 @@ def get_random_routes(network, connections):
 
             # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
             for connection in copy_connections:
-                if connection[0] == new_station and connection[1] == random_connection_name:
+                if connection[0] == start_station_name and connection[1] == random_connection_name:
                     for connection_used in connections_used:
-                        if connection_used[0] == new_station and connection_used[1] == random_connection_name:
+                        if connection_used[0] == start_station_name and connection_used[1] == random_connection_name:
                             check = False
                             continue
 
             if check != False:
-                connections_used.append((new_station, random_connection_name))
+                connections_used.append((start_station_name, random_connection_name))
                 time_route = int(random_connection[1])
 
                 # add the station object of the connection to the stations list
@@ -72,7 +71,6 @@ def get_random_routes(network, connections):
 
                 # update het aantal routes
                 if time >= 120:
-                    print(connections_used)
                     p = len(connections_used)/len(copy_connections)
                     print(p)
                     counter += 1
