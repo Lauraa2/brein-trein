@@ -74,7 +74,7 @@ def get_random_routes(network, connections):
                 K = 0
                 # voeg de route toe aan de dictionary van routes 
                 routes[counter] = Routes(stations, K)
-                routes[counter].add_routes(counter, stations) 
+                routes[counter].add_routes(counter, stations, K) 
                 total_time += time
 
     # bereken K

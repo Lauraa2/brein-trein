@@ -4,8 +4,9 @@ from .route import Route
 #from .network import Network
 
 class Routes():
-    def __init__(self, route):
+    def __init__(self, route, K):
         self.stations = route
+        self.score = K
         self.routes = {}
     
     def add_routes(self, train, route, K):
