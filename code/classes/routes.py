@@ -1,17 +1,19 @@
 from .station import Station
 import csv
+from .route import Route
 #from .network import Network
 
 class Routes():
-    def __init__(self, stations):
-        self.stations = stations
+    def __init__(self, route):
+        self.stations = route
         self.routes = {}
     
-    def add_routes(self, train, stations):
+    def add_routes(self, train, route):
         """
         Method to add routes to the routes dictionary
         """
-        self.routes[train] = stations
+        self.routes[train] = Route(route)
+        print(self.routes)
         return self.routes
 
 def print_results(routes_random):

@@ -1,5 +1,6 @@
 import random
 from code.classes.routes import Routes
+from code.classes.route import Route
 import copy
 
 def get_random_routes(network, connections):
@@ -24,7 +25,7 @@ def get_random_routes(network, connections):
 
     total_time = 0
 
-    while len(routes) < 7:
+    while counter < 7:
 
         # maak een lege lijst aan voor stations 
         stations = []
@@ -71,9 +72,10 @@ def get_random_routes(network, connections):
             if time >= 120:
                 counter += 1
 
-                # voeg de route toe aan de dictionary van routes
+                # voeg de route toe aan de dictionary van routes 
                 routes[counter] = Routes(stations)
-                routes[counter].add_routes(counter, stations)
+                routes[counter].add_routes(counter, stations) 
+                #routes[counter].add_routes(counter, stations)
                 total_time += time
 
     # bereken K
