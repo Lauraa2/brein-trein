@@ -100,8 +100,11 @@ def get_random_routes(network):
                 counter += 1
 
                 # voeg de route toe aan de dictionary van routes
-                routes_trajecten[counter] = Routes(route)
-                routes_trajecten[counter].add_routes(counter, route)
-                break
+                if route not in routes_trajecten:
+                    routes_trajecten[counter] = Routes(route)
+                    routes_trajecten[counter].add_routes(counter, route)
+                    break
+                else:
+                    break
 
     return routes_trajecten
