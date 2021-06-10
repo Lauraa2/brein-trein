@@ -7,7 +7,8 @@ import random
 class Network():
     def __init__(self):
         self.stations = self.load_station()
-        self.load_connections()        
+        self.load_connections()
+        self.get_connections()        
         
     def load_station(self):
         """
@@ -42,6 +43,13 @@ class Network():
                 for connection in connections:
                     self.stations[station].add_connection(connection, distance)
                     self.stations[connection].add_connection(station, distance)
+
+    def get_connections(self):
+        connections = []
+        for station in self.stations.values():
+            for connection in station.connections:
+                connections.append((station.name, connection))
+        return connections
 
 
     def print_csv(self):
