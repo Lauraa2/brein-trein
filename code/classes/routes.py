@@ -8,11 +8,11 @@ class Routes():
         self.stations = route
         self.routes = {}
     
-    def add_routes(self, train, route):
+    def add_routes(self, train, route, K):
         """
         Method to add routes to the routes dictionary
         """
-        self.routes[train] = Route(route)
+        self.routes[train, K] = Route(route)
         print(self.routes)
         return self.routes
 
@@ -32,6 +32,7 @@ def print_results(routes_random):
             for station in value.stations:
                 route = station[0]
                 routes.append(route)    
-            thewriter.writerow({'train': trains_count, 'route': routes})
+            thewriter.writerow({'train': trains_count, 'route': routes, 'score': key[1]})
+
 
 
