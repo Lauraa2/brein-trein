@@ -8,7 +8,7 @@ def get_random_routes(network, connections):
     Algorithm to gain random routes, with the following constraints:
 
     1. Max number of routes is 7
-    2. Total time is less than 2 hours
+    2. Time per route is less than 2 hours
 
     """
     # laad een lege dictionary om routes in te stoppen
@@ -70,6 +70,7 @@ def get_random_routes(network, connections):
 
             # update het aantal routes
             if time >= 120:
+                print(time)
                 counter += 1
 
                 # voeg de route toe aan de dictionary van routes 
@@ -79,5 +80,7 @@ def get_random_routes(network, connections):
 
     # bereken K
     p = len(connections_used)/len(copy_connections)
-    routes[counter].calculate_score(p, counter, total_time)
+    k = routes[counter].calculate_score(p, counter, total_time)
+    print(k)
+
     return routes
