@@ -71,18 +71,13 @@ def get_random_routes(network, connections):
             # update het aantal routes
             if time >= 120:
                 counter += 1
-                K = 0
+
                 # voeg de route toe aan de dictionary van routes 
-                #routes[counter] = Routes(stations, K)
-                routes[counter] = Routes(stations, K)
-                routes[counter].add_routes(counter, stations, K) 
+                routes[counter] = Routes(stations)
+                routes[counter].add_routes(counter, stations) 
                 total_time += time
 
     # bereken K
     p = len(connections_used)/len(copy_connections)
-    K = p*10000 - (counter*100 + total_time)
-    print(K)
-    #stations = []
-    #routes[counter] = Routes(stations, K)
-
+    routes[counter].calculate_score(p, counter, total_time)
     return routes
