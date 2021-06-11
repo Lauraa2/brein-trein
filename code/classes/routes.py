@@ -6,10 +6,11 @@ from .route import Route
 class Routes():
     def __init__(self, route):
         self.stations = route
+        self.routes = self.add_routes(route)
         self.routes = {}
         self.scores = []
     
-    def add_routes(self, train, route):
+    def add_routes(self, route):
         """
         Method to add routes to the routes dictionary
         """

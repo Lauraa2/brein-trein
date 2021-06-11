@@ -7,10 +7,10 @@ class HillClimber:
     equivalent solution is kept for the next iteration.
     """
     def __init__(self, random_start):
-
         self.hc_start = copy.deepcopy(random_start)
 
         #self.score = random_start.get_score()
+
 
     def change_single_route(self):
         """

@@ -3,17 +3,13 @@ from code.classes.routes import Routes
 from code.classes.route import Route
 import copy
 
-def get_random_routes(network, connections):
+def get_random_route(network, connections):
     """
     Algorithm to gain random routes, with the following constraints:
     1. Max number of routes is 7
     2. Time per route is less than 2 hours
 
     """
-    # laad een lege dictionary om routes in te stoppen
-    routes = {}
-    counter = 0
-
     # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
     copy_stations = copy.deepcopy(network)
     copy_stations_list = list(copy_stations.items())
@@ -71,15 +67,27 @@ def get_random_routes(network, connections):
             if time >= 120:
                 print(time)
                 counter += 1
+                return stations
+
+
+def get_random_routes(network, connections):
+    while counter < 7:
+        route = get_random_route(network, connections)
+        counter += 1
+    
+    pass
+    #routes = {}
+    #counter = 0
+
 
                 # voeg de route toe aan de dictionary van routes 
-                routes[counter] = Routes(stations)
-                routes[counter].add_routes(counter, stations) 
-                total_time += time
+                #routes[counter] = Routes(stations)
+                #routes[counter].add_routes(counter, stations) 
+                #total_time += time
 
     # bereken K
-    p = len(connections_used)/len(copy_connections)
-    k = routes[counter].calculate_score(p, counter, total_time)
-    print(k)
+    #p = len(connections_used)/len(copy_connections)
+    #k = routes[counter].calculate_score(p, counter, total_time)
+    #print(k)
 
-    return routes
+    #return routes

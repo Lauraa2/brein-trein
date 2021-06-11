@@ -1,4 +1,4 @@
-from code.classes import network, routes
+from code.classes import network, routes, route
 from code.algorithms import random
 from code.algorithms import hillclimber
 from code.classes.routes import Routes
@@ -11,8 +11,11 @@ if __name__ == "__main__":
     network = network.Network()
     connections = network.get_connections()
 
+    #route = route.Route(network.stations)
+
     # Create random routes and print results
-    random_routes = random.get_random_routes(network.stations, connections)
+    stations = random.get_random_routes(network.stations, connections)
+    route = route.Route(stations)
     results = routes.Routes.print_results(random_routes)
 
     # Create visualisation from our results

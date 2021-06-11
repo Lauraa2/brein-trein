@@ -8,13 +8,10 @@ import random
 from collections import defaultdict
 import csv
 
-
 data = []
 trajecten = []
 dictionary = {}
 trein = {}
-
-
 
 def print_stations(test, test2):
     
