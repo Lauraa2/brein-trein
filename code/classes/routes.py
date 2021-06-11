@@ -14,7 +14,7 @@ class Routes():
         self.routes[train] = stations
         return self.routes
 
-def print_results(test2):
+def print_results(routes_random):
     """
     Method to print a csv file with results
     """
@@ -24,12 +24,10 @@ def print_results(test2):
         thewriter.writeheader()
         trains_count = 0
         
-        for key,value in test2.items():
+        for key,value in routes_random.items():
             routes = []
             trains_count += 1
             for station in value.stations:
-                route = station
+                route = station[0]
                 routes.append(route)    
             thewriter.writerow({'train': trains_count, 'route': routes})
-
-
