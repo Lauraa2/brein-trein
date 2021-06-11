@@ -21,11 +21,9 @@ def print_stations(test, test2):
     for key,value in test2.items():
         trajecten.append(value.stations)
         
-
     for key,value in test.items():
         dictionary[key] = [float(value.x), float(value.y)]
         
-    
 
     k = 0
     for traject in trajecten:
