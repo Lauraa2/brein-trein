@@ -43,6 +43,7 @@ def get_random_routes(network, connections):
             # pak het laatst toegevoegde station uit de lijst als nieuw station
             connections_start_station = list(stations[-1][1].connections.items())
             random_connection = random.choice(connections_start_station)
+            new_station = stations[-1][0]
 
             random_connection_name = random_connection[0]
 
@@ -55,7 +56,7 @@ def get_random_routes(network, connections):
                     break
 
             if check != False:
-                connections_used.append((start_station_name, random_connection_name))
+                connections_used.append((new_station, random_connection_name))
                 time_route = int(random_connection[1])
 
             # add the station object of the connection to the stations list
