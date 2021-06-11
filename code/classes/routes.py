@@ -1,17 +1,20 @@
 from .station import Station
 import csv
+from .route import Route
 #from .network import Network
 
 class Routes():
-    def __init__(self, stations):
-        self.stations = stations
+    def __init__(self, route, K):
+        self.stations = route
+        self.score = K
         self.routes = {}
     
-    def add_routes(self, train, stations):
+    def add_routes(self, train, route, K):
         """
         Method to add routes to the routes dictionary
         """
-        self.routes[train] = stations
+        self.routes[train, K] = Route(route)
+        print(self.routes)
         return self.routes
 
 def print_results(routes_random):
@@ -31,5 +34,6 @@ def print_results(routes_random):
                 route = station[0]
                 routes.append(route)    
             thewriter.writerow({'train': trains_count, 'route': routes})
+
 
 
