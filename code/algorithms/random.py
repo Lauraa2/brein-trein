@@ -79,7 +79,7 @@ def get_random_routes(network, connections):
     # bereken K
     p = len(connections_used)/len(copy_connections)
     K = p*10000 - (counter*100 + total_time)
-    print(K)
+    #print(K)
     #stations = []
     #routes[counter] = Routes(stations, K)
 
