@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     # Create random routes and print results
     random_routes = random.get_random_routes(network.stations, connections)
-    results = routes.print_results(random_routes)
+    results = routes.Routes.print_results(random_routes)
 
     # Create visualisation from our results
     vision = vision.print_stations(network.stations, random_routes)
