@@ -3,6 +3,41 @@ from code.classes.routes import Routes
 from code.classes.route import Route
 import copy
 
+def get_one_random_route(network):
+    """
+    Function to get one random route
+    """
+    copy_stations = copy.deepcopy(network)
+    copy_stations_list = list(copy_stations.items())
+
+    route = []
+    start_station = random.choice(copy_stations_list)
+    route.append(start_station)
+
+    time = 0
+
+    while time <= 120:
+        
+        # pak het laatst toegevoegde station uit de lijst als nieuw station
+        connections_start_station = list(route[-1][1].connections.items())
+        random_connection = random.choice(connections_start_station)
+
+        random_connection_name = random_connection[0]
+
+        time_route = int(random_connection[1])
+
+        for station in copy_stations_list:
+                if station[0] == random_connection_name:
+                    route.append(station)
+        
+        # update de totale tijd van de route
+        time += time_route
+
+        # update het aantal routes
+        if time == 120:
+            return route
+          
+
 def get_random_routes(network, connections):
     """
     Algorithm to gain random routes, with the following constraints:
