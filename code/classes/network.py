@@ -65,21 +65,3 @@ class Network():
             for station in self.stations.values():
                 trains_count += 1
                 thewriter.writerow({'train': trains_count, 'stations': station.name, 'connections': station.connections, 'y': station.x, 'x': station.y})
-
-
-
-    
-
-           
-                
-                
-                    
-            
-                
-
-            
-            
-
-
-
-
