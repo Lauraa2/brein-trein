@@ -75,11 +75,13 @@ def get_random_routes(network, connections):
     """
     counter = 0
     while counter < 7:
+        routes = []
         route = get_random_route(network, connections)
+        routes.append(route)
         counter += 1
 
         if counter == 7:
-            Routes(route)
+            Routes(routes)
     pass
     #routes = {}
     #counter = 0

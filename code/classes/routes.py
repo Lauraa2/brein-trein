@@ -4,18 +4,17 @@ from .route import Route
 #from .network import Network
 
 class Routes():
-    def __init__(self, route):
-        self.stations = route
-        self.routes = self.add_routes(route)
-        self.routes = {}
-        self.scores = []
+    def __init__(self, routes):
+        self.routes = self.add_routes(routes)
+        self.scores = self.calculate_score(routes)
     
-    def add_routes(self, route):
+    def add_routes(self, routes):
         """
         Method to add routes to the routes dictionary
         """
-        self.routes[train] = Route(route)
-        return self.routes
+        all_routes = []
+        all_routes.append(routes)
+        return all_routes
     
     def calculate_score(self, p, counter, total_time):
         """
