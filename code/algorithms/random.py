@@ -74,7 +74,7 @@ def get_random_routes(network, connections):
     random function to get max seven routes
     """
     counter = 0
-    while counter < 7:
+    while counter < 7 and connections_used == connections:
         routes = []
         route = get_random_route(network, connections)
         routes.append(route)
