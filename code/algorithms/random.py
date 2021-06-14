@@ -11,10 +11,6 @@ def get_random_route(network, connections):
     # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
     copy_stations = copy.deepcopy(network)
     copy_stations_list = list(copy_stations.items())
-    copy_connections = copy.deepcopy(connections)
-
-    # maak een lijst voor alle bereden verbindingen
-    connections_used = []
 
     # maak een lege lijst aan voor stations 
     stations = []
@@ -37,17 +33,7 @@ def get_random_route(network, connections):
 
         random_connection_name = random_connection[0]
 
-        check = True
-
-        # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
-        for connection_used in connections_used:
-            if connection_used[0] == new_station and connection_used[1] == random_connection_name:
-                check = False
-                break
-
-        if check != False:
-            connections_used.append((new_station, random_connection_name))
-            time_route = int(random_connection[1])
+        time_route = int(random_connection[1])
 
         # add the station object of the connection to the stations list
         for station in copy_stations_list:
@@ -68,7 +54,6 @@ def get_random_route(network, connections):
             route = Route(stations, time)
             return route
 
-
 def get_random_routes(network, connections):
     """
     random function to get max seven routes
@@ -85,18 +70,3 @@ def get_random_routes(network, connections):
         if counter == 7:
             new_routes = Routes(routes, duration, connections)
             return new_routes
-    #routes = {}
-    #counter = 0
-
-
-                # voeg de route toe aan de dictionary van routes 
-                #routes[counter] = Routes(stations)
-                #routes[counter].add_routes(counter, stations) 
-                #total_time += time
-
-    # bereken K
-    #p = len(connections_used)/len(copy_connections)
-    #k = routes[counter].calculate_score(p, counter, total_time)
-    #print(k)
-
-    #return routes

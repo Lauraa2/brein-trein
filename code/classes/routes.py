@@ -8,7 +8,8 @@ class Routes():
         self.routes = routes
         self.duration = duration
         self.connections = connections
-        self.scores = self.calculate_score()
+        self.score = self.calculate_score()
+        self.print_results()
     
     def add_routes(self, routes):
         """
@@ -23,44 +24,47 @@ class Routes():
         """ 
         counter = len(self.routes)
         connections_used = []
-        check = True
 
         for route in self.routes:
-            print(route.route)
-            for station in route.route:
-                print(station[0])
+            for i in range(1, len(route.route)):
+                end_station = route.route[i]
+                start_station = route.route[i - 1]
+                check = True
 
         # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
                 for connection_used in connections_used:
-                    if connection_used[0] == station[0] and connection_used[1] == station[1]:
+                    if connection_used[0] == start_station[0] and connection_used[1] == end_station[0]:
                         check = False
-                        break
 
-        if check != False:
-            connections_used.append((new_station, random_connection_name))
-            time_route = int(random_connection[1])
+                if check != False:
+                    connections_used.append((start_station[0], end_station[0]))
         
-        #K = p*10000 - (counter*100 + total_time)
-        #self.scores.append(K)
-        #return self.scores
+        # bereken p
+        p = len(connections_used)/len(self.connections)
 
-    def print_results(new_routes):
+        # bereken score
+        score = float(p)*10000 - (int(counter)*100 + int(self.duration))
+        print(score)
+        return score
+
+    def print_results(self):
         """
         Method to print a csv file with results
         """
-        with open('results.csv', 'w', newline='') as csvfile:
+        with open('output.csv', 'w', newline='') as csvfile:
             fieldnames = ['train', 'route']
             thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
             thewriter.writeheader()
             trains_count = 0
 
-            for key,value in new_routes.items():
+            for route in self.routes:
                 list_of_routes = []
                 trains_count += 1
-                for station in value.stations:
+                for station in route.route:
                     route = station[0]
                     list_of_routes.append(route)    
                 thewriter.writerow({'train': trains_count, 'route': list_of_routes})
+            thewriter.writerow({'train': 'score:', 'route': self.score})
         
 
      
