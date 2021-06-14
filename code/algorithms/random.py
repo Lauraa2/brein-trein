@@ -31,6 +31,17 @@ def get_random_route(network, connections, total_time):
         random_connection = random.choice(connections_start_station)
         new_station = stations[-1][0]
 
+        #print(stations)
+        for station in stations:
+            if random_connection[0] == station[0]:
+                print(random_connection[0])
+                print(station[0])
+                if len(connections_start_station) >= 2:
+                    connections_start_station.remove(random_connection)
+                    random_connection = random.choice(connections_start_station)
+                else:
+                    connections_start_station
+
         random_connection_name = random_connection[0]
 
         time_route = float(random_connection[1])
@@ -48,7 +59,7 @@ def get_random_route(network, connections, total_time):
             route = Route(stations, time)
             return route
         elif time > total_time:
-            # verwijder het laatste station uit de lijst, zodat de tijd niet over 120 gaat
+            # verwijder het laatste station uit de lijst, zodat de tijd niet over 120 of 180 gaat
             time -= time_route
             stations.pop()
             route = Route(stations, time)
