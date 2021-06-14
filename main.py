@@ -14,6 +14,10 @@ if __name__ == "__main__":
     #route = route.Route(network.stations)
 
     # Create random routes and print results
+
+    #new_route = route.get_route()
+    #new_routes = routes.
+
     stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
     #results = routes.Routes.print_results(random_routes)

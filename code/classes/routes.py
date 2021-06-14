@@ -6,23 +6,23 @@ from .route import Route
 class Routes():
     def __init__(self, routes):
         self.routes = self.add_routes(routes)
-        self.scores = self.calculate_score(routes)
+        #self.scores = self.calculate_score(routes)
     
     def add_routes(self, routes):
         """
-        Method to add routes to the routes dictionary
+        Method to add routes to the routes list
         """
         all_routes = []
         all_routes.append(routes)
         return all_routes
     
-    def calculate_score(self, p, counter, total_time):
+    #def calculate_score(self, p, counter, total_time):
         """
         Method to calculate the score from all routes
         """ 
-        K = p*10000 - (counter*100 + total_time)
-        self.scores.append(K)
-        return self.scores
+     #   K = p*10000 - (counter*100 + total_time)
+      #  self.scores.append(K)
+       # return self.scores
 
     def print_results(new_routes):
         """

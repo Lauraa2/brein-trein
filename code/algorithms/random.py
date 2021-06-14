@@ -66,6 +66,7 @@ def get_random_route(network, connections):
             time -= time_route
             stations.pop()
             route = Route(stations)
+            #print(route.route[0][0])
             return route
 
 
@@ -74,15 +75,18 @@ def get_random_routes(network, connections):
     random function to get max seven routes
     """
     counter = 0
+    routes = []
     while counter < 7:
-        routes = []
         route = get_random_route(network, connections)
         routes.append(route)
         counter += 1
 
         if counter == 7:
-            Routes(routes)
-    pass
+            new_routes = Routes(routes)
+            #Routes(routes)
+            #print(new_routes.routes.items())
+    
+
     #routes = {}
     #counter = 0
 

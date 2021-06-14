@@ -6,4 +6,5 @@ class Route():
     def get_route(self, stations):
         route = []
         route.append(stations)
+        print(route)
         return route
