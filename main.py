@@ -37,7 +37,11 @@ if __name__ == "__main__":
     one_route = random.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
 
-
+    """
+    retrieve a random solution and draw it
+    """
+    #routes = random.get_random_routes(network.stations, connections)
+    #vision.draw_solution(f'solutions/csv_files/{routes.filename}', network)
 
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
