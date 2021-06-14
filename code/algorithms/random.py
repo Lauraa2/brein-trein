@@ -3,27 +3,27 @@ from code.classes.routes import Routes
 from code.classes.route import Route
 import copy
           
-def get_random_route(network, connections):
+def get_random_route(stations, connections):
     """
     Function to get one random route
     - Time per route is less than 2 hours
     """
-    # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
-    copy_stations = copy.deepcopy(network)
-    copy_stations_list = list(copy_stations.items())
-    copy_connections = copy.deepcopy(connections)
+    # # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
+    # copy_stations = copy.deepcopy(network)
+    # copy_stations_list = list(copy_stations.items())
+    # copy_connections = copy.deepcopy(connections)
 
-    # maak een lijst voor alle bereden verbindingen
-    connections_used = []
+    # # maak een lijst voor alle bereden verbindingen
+    # connections_used = []
 
-    # maak een lege lijst aan voor stations 
-    stations = []
+    # # maak een lege lijst aan voor stations 
+    # stations = []
 
-    # pak een random station uit de lijst met stationnetjes
-    start_station = random.choice(copy_stations_list) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
+    # # pak een random station uit de lijst met stationnetjes
+    # start_station = random.choice(copy_stations_list) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
 
-    # voeg het station toe aan een lijst die de connecties gaat laden 
-    stations.append(start_station)
+    # # voeg het station toe aan een lijst die de connecties gaat laden 
+    # stations.append(start_station)
 
     # zet de tijd op 0 voor een nieuw traject
     time = 0
@@ -73,6 +73,23 @@ def get_random_routes(network, connections):
     """
     random function to get max seven routes
     """
+    # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
+    copy_stations = copy.deepcopy(network)
+    copy_stations_list = list(copy_stations.items())
+    copy_connections = copy.deepcopy(connections)
+
+    # maak een lijst voor alle bereden verbindingen
+    connections_used = []
+
+    # maak een lege lijst aan voor stations 
+    stations = []
+
+    # pak een random station uit de lijst met stationnetjes
+    start_station = random.choice(copy_stations_list) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
+
+    # voeg het station toe aan een lijst die de connecties gaat laden 
+    stations.append(start_station)
+
     counter = 0
     while counter < 7 and connections_used == connections:
         routes = []
