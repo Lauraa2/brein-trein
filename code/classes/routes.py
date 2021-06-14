@@ -11,13 +11,6 @@ class Routes():
         self.score = self.calculate_score()
         self.print_results()
     
-    def add_routes(self, routes):
-        """
-        Method to add routes to the routes dictionary
-        """
-        all_routes = routes
-        return all_routes
-    
     def calculate_score(self):
         """
         Method to calculate the score from all routes
