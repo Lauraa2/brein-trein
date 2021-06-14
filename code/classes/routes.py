@@ -14,7 +14,7 @@ class Routes():
     
     def add_routes(self, routes):
         """
-        Method to add routes to the routes dictionary
+        Method to add routes to the routes list
         """
         all_routes = routes
         return all_routes
