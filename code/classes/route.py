@@ -1,10 +1,6 @@
 
 class Route():
-    def __init__(self, stations):
-        self.route = self.get_route(stations)
+    def __init__(self, stations, time):
+        self.route = stations
+        self.duration = time
     
-    def get_route(self, stations):
-        route = []
-        route.append(stations)
-        print(route)
-        return route
