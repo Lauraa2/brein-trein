@@ -14,10 +14,11 @@ if __name__ == "__main__":
     #route = route.Route(network.stations)
 
     # Create random routes and print results
-    one_route = random.get_random_routes(network.stations, connections)
+    #one_route = random.get_random_routes(network.stations, connections)
     #new_routes = routes.Routes(one_route)
 
-
+    routes = random.get_random_routes(network.stations, connections)
+    vision.draw_solution(f'solutions/csv_files/{routes.filename}', network)
 
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
