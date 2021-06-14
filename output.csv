@@ -1,0 +1,9 @@
+train,route
+1,"['Dordrecht', 'Rotterdam Centraal', 'Dordrecht', 'Rotterdam Centraal', 'Dordrecht', 'Rotterdam Centraal', 'Dordrecht', 'Rotterdam Centraal']"
+2,"['Den Helder', 'Alkmaar', 'Hoorn', 'Alkmaar', 'Castricum', 'Alkmaar']"
+3,"['Hoorn', 'Zaandam', 'Hoorn', 'Zaandam', 'Castricum', 'Alkmaar']"
+4,"['Beverwijk', 'Zaandam', 'Castricum', 'Alkmaar', 'Den Helder', 'Alkmaar']"
+5,"['Leiden Centraal', 'Den Haag Centraal', 'Delft', 'Den Haag Centraal', 'Delft', 'Den Haag Centraal', 'Leiden Centraal', 'Den Haag Centraal', 'Leiden Centraal', 'Heemstede-Aerdenhout']"
+6,"['Alkmaar', 'Castricum', 'Alkmaar', 'Castricum', 'Alkmaar', 'Den Helder', 'Alkmaar']"
+7,"['Schiphol Airport', 'Leiden Centraal', 'Alphen a/d Rijn', 'Gouda', 'Den Haag Centraal', 'Gouda', 'Alphen a/d Rijn']"
+score:,2645.142857142857

@@ -8,7 +8,8 @@ class Routes():
         self.routes = routes
         self.duration = duration
         self.connections = connections
-        self.scores = self.calculate_score()
+        self.score = self.calculate_score()
+        self.print_results()
     
     def add_routes(self, routes):
         """
@@ -46,23 +47,24 @@ class Routes():
         print(score)
         return score
 
-    def print_results(new_routes):
+    def print_results(self):
         """
         Method to print a csv file with results
         """
-        with open('results.csv', 'w', newline='') as csvfile:
+        with open('output.csv', 'w', newline='') as csvfile:
             fieldnames = ['train', 'route']
             thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
             thewriter.writeheader()
             trains_count = 0
 
-            for key,value in new_routes.items():
+            for route in self.routes:
                 list_of_routes = []
                 trains_count += 1
-                for station in value.stations:
+                for station in route.route:
                     route = station[0]
                     list_of_routes.append(route)    
                 thewriter.writerow({'train': trains_count, 'route': list_of_routes})
+            thewriter.writerow({'train': 'score:', 'route': self.score})
         
 
      
