@@ -11,7 +11,7 @@ if __name__ == "__main__":
     if len(argv) == 2:
         region = argv[1]
     else:
-        print("Usage: python3 routes.py 'Holland' OR 'Nationaal'")
+        print("Usage: python3 main.py 'Holland' OR 'Nationaal'")
         exit(1)
 
     stationfile = f"data/Stations{region}.csv"

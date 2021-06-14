@@ -42,6 +42,7 @@ class Routes():
         # bereken p
         p = len(connections_used)/len(self.connections)
 
+
         # bereken score
         score = float(p)*10000 - (int(counter)*100 + int(self.duration))
         print(score)
