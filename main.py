@@ -26,10 +26,7 @@ if __name__ == "__main__":
         time = 120
         counter = 7
 
-    
    
-
-
     # Create a network from our data
     #network = network.Network()
     connections = data.get_connections()
