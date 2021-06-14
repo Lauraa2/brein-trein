@@ -1,6 +1,7 @@
 from .station import Station
 import csv
 from .route import Route
+from code.visualisations import vision
 #from .network import Network
 
 class Routes():
@@ -35,6 +36,7 @@ class Routes():
         # bereken p
         p = len(connections_used)/len(self.connections)
 
+
         # bereken score
         score = float(p)*10000 - (int(counter)*100 + int(self.duration))
         print(score)
@@ -44,8 +46,11 @@ class Routes():
         """
         Method to print a csv file with results
         """
-        with open('output.csv', 'w', newline='') as csvfile:
-            fieldnames = ['train', 'route']
+        # Create a unique file name
+        self.filename = vision.get_file_name(self.score, '.csv')
+
+        with open(f'solutions/csv_files/{self.filename}', 'w', newline='') as csvfile:
+            fieldnames = ['train', 'stations']
             thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
             thewriter.writeheader()
             trains_count = 0
@@ -53,11 +58,17 @@ class Routes():
             for route in self.routes:
                 list_of_routes = []
                 trains_count += 1
+
                 for station in route.route:
                     route = station[0]
-                    list_of_routes.append(route)    
-                thewriter.writerow({'train': trains_count, 'route': list_of_routes})
-            thewriter.writerow({'train': 'score:', 'route': self.score})
+                    list_of_routes.append(route)
+
+                # Ensure the printable has the appropriate format
+                # Removes the quotation marks from around the names of the stations
+                list_of_routes = ('[%s]' % ', '.join(map(str, list_of_routes)))    
+                thewriter.writerow({'train': trains_count, 'stations': list_of_routes})
+
+            thewriter.writerow({'train': 'score', 'stations': self.score})
         
 
      

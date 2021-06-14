@@ -20,7 +20,7 @@ class Network():
             reader = csv.DictReader(in_file)
 
             for row in reader:
-                stations[row['station']] = Station(row['station'], row['x'], row['y'])
+                stations[row['station']] = Station(row['station'], float(row['x']), float(row['y']))
 
         return stations 
 
