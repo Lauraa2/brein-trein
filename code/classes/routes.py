@@ -23,26 +23,28 @@ class Routes():
         """ 
         counter = len(self.routes)
         connections_used = []
-        check = True
 
         for route in self.routes:
-            print(route.route)
-            for station in route.route:
-                print(station[0])
+            for i in range(1, len(route.route)):
+                end_station = route.route[i]
+                start_station = route.route[i - 1]
+                check = True
 
         # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
                 for connection_used in connections_used:
-                    if connection_used[0] == station[0] and connection_used[1] == station[1]:
+                    if connection_used[0] == start_station[0] and connection_used[1] == end_station[0]:
                         check = False
-                        break
 
-        if check != False:
-            connections_used.append((new_station, random_connection_name))
-            time_route = int(random_connection[1])
+                if check != False:
+                    connections_used.append((start_station[0], end_station[0]))
         
-        #K = p*10000 - (counter*100 + total_time)
-        #self.scores.append(K)
-        #return self.scores
+        # bereken p
+        p = len(connections_used)/len(self.connections)
+
+        # bereken score
+        score = float(p)*10000 - (int(counter)*100 + int(self.duration))
+        print(score)
+        return score
 
     def print_results(new_routes):
         """

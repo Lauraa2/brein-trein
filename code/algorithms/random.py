@@ -3,7 +3,7 @@ from code.classes.routes import Routes
 from code.classes.route import Route
 import copy
           
-def get_random_route(network, connections):
+def get_random_route(network, connections, total_time):
     """
     Function to get one random route
     - Time per route is less than 2 hours
@@ -11,10 +11,6 @@ def get_random_route(network, connections):
     # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
     copy_stations = copy.deepcopy(network)
     copy_stations_list = list(copy_stations.items())
-    copy_connections = copy.deepcopy(connections)
-
-    # maak een lijst voor alle bereden verbindingen
-    connections_used = []
 
     # maak een lege lijst aan voor stations 
     stations = []
@@ -28,7 +24,7 @@ def get_random_route(network, connections):
     # zet de tijd op 0 voor een nieuw traject
     time = 0
 
-    while time <= 120:
+    while time <= total_time:
         
         # pak het laatst toegevoegde station uit de lijst als nieuw station
         connections_start_station = list(stations[-1][1].connections.items())
@@ -37,17 +33,7 @@ def get_random_route(network, connections):
 
         random_connection_name = random_connection[0]
 
-        check = True
-
-        # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
-        for connection_used in connections_used:
-            if connection_used[0] == new_station and connection_used[1] == random_connection_name:
-                check = False
-                break
-
-        if check != False:
-            connections_used.append((new_station, random_connection_name))
-            time_route = int(random_connection[1])
+        time_route = float(random_connection[1])
 
         # add the station object of the connection to the stations list
         for station in copy_stations_list:
@@ -58,45 +44,29 @@ def get_random_route(network, connections):
         time += time_route
 
         # update het aantal routes
-        if time == 120:
+        if time == total_time:
             route = Route(stations, time)
             return route
-        elif time > 120:
+        elif time > total_time:
             # verwijder het laatste station uit de lijst, zodat de tijd niet over 120 gaat
             time -= time_route
             stations.pop()
             route = Route(stations, time)
             return route
 
-
-def get_random_routes(network, connections):
+def get_random_routes(network, connections, total_time, total_counter):
     """
     random function to get max seven routes
     """
     counter = 0
     routes = []
     duration = 0
-    while counter < 7:
-        route = get_random_route(network, connections)
+    while counter < total_counter:
+        route = get_random_route(network, connections, total_time)
         routes.append(route)
         counter += 1
         duration += route.duration
 
-        if counter == 7:
+        if counter == total_counter:
             new_routes = Routes(routes, duration, connections)
             return new_routes
-    #routes = {}
-    #counter = 0
-
-
-                # voeg de route toe aan de dictionary van routes 
-                #routes[counter] = Routes(stations)
-                #routes[counter].add_routes(counter, stations) 
-                #total_time += time
-
-    # bereken K
-    #p = len(connections_used)/len(copy_connections)
-    #k = routes[counter].calculate_score(p, counter, total_time)
-    #print(k)
-
-    #return routes
