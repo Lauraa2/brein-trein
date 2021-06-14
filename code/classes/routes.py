@@ -44,7 +44,7 @@ class Routes():
 
         # bereken score
         score = float(p)*10000 - (int(counter)*100 + int(self.duration))
-        print(score)
+        #print(score)
         return score
 
     def print_results(self):

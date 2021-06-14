@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from code.algorithms import random
+from code.algorithms import random_alg
 import random
 
 from collections import defaultdict

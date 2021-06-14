@@ -1,0 +1,9 @@
+train,route
+1,"['Gouda', 'Den Haag Centraal', 'Delft', 'Den Haag Centraal', 'Gouda', 'Den Haag Centraal', 'Gouda', 'Alphen a/d Rijn']"
+2,"['Rotterdam Alexander', 'Rotterdam Centraal', 'Rotterdam Alexander', 'Rotterdam Centraal', 'Rotterdam Alexander', 'Rotterdam Centraal', 'Rotterdam Alexander', 'Gouda', 'Rotterdam Alexander', 'Rotterdam Centraal', 'Schiedam Centrum', 'Delft', 'Den Haag Centraal', 'Gouda']"
+3,"['Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Amstel', 'Amsterdam Centraal', 'Amsterdam Sloterdijk', 'Zaandam', 'Beverwijk', 'Zaandam', 'Castricum', 'Alkmaar', 'Castricum']"
+4,"['Schiphol Airport', 'Amsterdam Zuid', 'Amsterdam Sloterdijk', 'Amsterdam Zuid', 'Schiphol Airport', 'Amsterdam Zuid', 'Schiphol Airport', 'Leiden Centraal', 'Heemstede-Aerdenhout', 'Haarlem', 'Amsterdam Sloterdijk', 'Zaandam', 'Amsterdam Sloterdijk', 'Amsterdam Centraal']"
+5,"['Schiphol Airport', 'Leiden Centraal', 'Schiphol Airport', 'Amsterdam Zuid', 'Amsterdam Sloterdijk', 'Amsterdam Centraal', 'Amsterdam Sloterdijk', 'Haarlem', 'Amsterdam Sloterdijk', 'Zaandam', 'Hoorn']"
+6,"['Leiden Centraal', 'Den Haag Centraal', 'Delft', 'Den Haag Centraal', 'Delft', 'Den Haag Centraal', 'Delft', 'Schiedam Centrum', 'Delft', 'Den Haag Centraal', 'Leiden Centraal']"
+7,"['Den Helder', 'Alkmaar', 'Den Helder', 'Alkmaar']"
+score:,5274.714285714286
