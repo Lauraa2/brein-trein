@@ -15,7 +15,8 @@ def draw_solution(solution_csv, network): # The routes is needed to get all coor
     """
 
     # Different colors to plot each trajectory in
-    colors = ['green', 'red', 'blue', 'lime', 'orange', 'cyan', 'yellow']
+    colors = ['green', 'red', 'blue', 'lime', 'orange', 'cyan', 'yellow', 'magenta', 'black', 'blueviolet' \
+        'silver', 'gold', 'silver', 'olivedrab', 'peru', 'violet', 'teal', 'purple', 'royalblue', 'pink']
 
     file = open(solution_csv)
     reader = csv.DictReader(file)
