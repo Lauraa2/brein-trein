@@ -3,7 +3,7 @@ from code.classes.routes import Routes
 from code.classes.route import Route
 import copy
           
-def get_random_route(network, connections, total_time):
+def get_random_route(network, total_time):
     """
     Function to get one random route
     - Time per route is less than 2 hours
@@ -28,8 +28,19 @@ def get_random_route(network, connections, total_time):
         
         # pak het laatst toegevoegde station uit de lijst als nieuw station
         connections_start_station = list(stations[-1][1].connections.items())
+
+        # heuristiek om als volgende station de dichtstbijzijnde te nemen
+        connections_start_station.sort(key=lambda a:int(a[1]))
+        new_station = connections_start_station[0]
+
+        # verwijder de connectie zodat de volgende keer het station wat daarna komt wordt gekozen
+        for connection in stations[-1][1].connections:
+            print(connection)
+            if connection == new_station[0]:
+                del connection        
+
+        # een random connection als volgende station ipv de dichtstbijzijnde
         random_connection = random.choice(connections_start_station)
-        new_station = stations[-1][0]
 
         random_connection_name = random_connection[0]
 
