@@ -5,18 +5,20 @@ import random
 
 
 class Network():
-    def __init__(self):
-        self.stations = self.load_station()
-        self.load_connections()
+    def __init__(self, stationfile, connectionfile):
+        self.stations = self.load_station(stationfile)
+        self.stationfile = stationfile
+        self.connectionfile = connectionfile
+        self.load_connections(connectionfile)
         self.get_connections()        
         
-    def load_station(self):
+    def load_station(self, stationfile):
         """
         Load all the stations
         """
         stations = {}
 
-        with open("data/StationsHolland.csv", 'r') as in_file:
+        with open(stationfile) as in_file:
             reader = csv.DictReader(in_file)
 
             for row in reader:
@@ -24,11 +26,11 @@ class Network():
 
         return stations 
 
-    def load_connections(self):
+    def load_connections(self, connectionfile):
         """
         Loads all the connections to the stations into the loaded nodes (stations) 
         """
-        with open("data/ConnectiesHolland.csv", 'r') as in_file:
+        with open(connectionfile) as in_file:
             reader = csv.DictReader(in_file)
             
             for row in reader:
