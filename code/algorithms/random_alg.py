@@ -35,7 +35,7 @@ def get_random_route(network, total_time):
 
         # verwijder de connectie zodat de volgende keer het station wat daarna komt wordt gekozen
         for connection in stations[-1][1].connections:
-            print(connection)
+            #print(connection)
             if connection == new_station[0]:
                 del connection        
 
@@ -45,8 +45,8 @@ def get_random_route(network, total_time):
         #print(stations)
         for station in stations:
             if random_connection[0] == station[0]:
-                print(random_connection[0])
-                print(station[0])
+                # print(random_connection[0])
+                # print(station[0])
                 if len(connections_start_station) >= 2:
                     connections_start_station.remove(random_connection)
                     random_connection = random.choice(connections_start_station)
