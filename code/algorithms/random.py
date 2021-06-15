@@ -30,7 +30,7 @@ def get_random_route(network, total_time):
         connections_start_station = list(stations[-1][1].connections.items())
 
         # heuristiek om als volgende station de dichtstbijzijnde te nemen
-        connections_start_station.sort(key=lambda a:int(a[1]))
+        connections_start_station.sort(key=lambda a:float(a[1]))
         new_station = connections_start_station[0]
 
         # verwijder de connectie zodat de volgende keer het station wat daarna komt wordt gekozen
@@ -73,7 +73,7 @@ def get_random_routes(network, connections, total_time, total_counter):
     routes = []
     duration = 0
     while counter < total_counter:
-        route = get_random_route(network, connections, total_time)
+        route = get_random_route(network, total_time)
         routes.append(route)
         counter += 1
         duration += route.duration
