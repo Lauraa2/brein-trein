@@ -41,7 +41,6 @@ if __name__ == "__main__":
     retrieve a random solution and draw it
     """
     #routes = random.get_random_routes(network.stations, connections)
-    #vision.draw_solution(f'solutions/csv_files/{routes.filename}', network)
 
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
@@ -52,4 +51,6 @@ if __name__ == "__main__":
 
     # Run HillClimber
     climber = hillclimber.HillClimber(one_route, data.stations, time, connections)
-    climber.run(1000)
+    run_climber = climber.run(1000)
+
+    vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
