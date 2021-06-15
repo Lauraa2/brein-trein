@@ -1,6 +1,7 @@
 import copy
 import random
 from code.classes import network, routes, route
+from code.classes.routes import Routes
 from code.algorithms import random_alg
 
 
@@ -9,45 +10,46 @@ class HillClimber:
     The HillClimber class changes a random route in the network to a random valid route. Each improvement or
     equivalent solution is kept for the next iteration.
     """
-    def __init__(self, test):
-        pass
-        self.hc_startingroutes = test
+    def __init__(self, startingroutes, stations, time, connections):
+        self.hc_startingroutes = startingroutes
+        self.data_stations = stations
+        self.max_time_route = time
+        self.connections = connections
         #print(self.hc_startingroutes.routes[0].route)
-        self.score = routes.Routes.calculate_score(self.hc_startingroutes)
-
+        self.score = routes.Routes.calculate_score(self.hc_startingroutes, self.hc_startingroutes.duration, self.connections)
 
     def mutate_single_route(self, new_routes):
         """
         Change a single route with another random route
         """
-        # eerst een random traject verwijderen
-        random_route = random.choice(new_routes)
-        
-        # dan die random key verwijderen
-        new_routes.remove(random_route)
+        # remove a random route first
+        random_route = random.choice(new_routes.routes)
+        new_routes.routes.remove(random_route)
 
-        # dan een nieuwe route toevoegen
-        new_single_route = random_alg.get_random_route(network.Network().stations, network.Network.get_connections)
-        new_routes.append(new_single_route)
+        # render a new random route
+        new_single_route = random_alg.get_random_route(self.data_stations, self.max_time_route)
 
-    # def mutate_routes(self, new_routes):
-    #     """
-    #     Changes the value of a number of nodes with a random valid value.
-    #     """
-    #     for _ in range(number_of_changes):
-    #         self.mutate_single_routes(new_routes)
+        # append the new route to the list of routes
+        new_routes.routes.append(new_single_route)
 
 
     def compare_score(self, new_routes):
         """
         Checks and accepts better solutions than the current solution.
         """
-        new_score = routes.Routes.calculate_score(new_routes)
+        # update the duration of the new route
+        total_time = 0
+        for i in range(len(new_routes.routes)):
+            total_time += new_routes.routes[i].duration
+
+        # calculate the score of the new route
+        new_score = routes.Routes.calculate_score(new_routes, total_time, self.connections)
         old_score = self.score
         
         print(old_score)
         print(new_score) 
 
+        # update the score and route if the new route is better than the old route
         if new_score > old_score:
             self.score = new_score
             self.hc_startingroutes = new_routes
@@ -56,16 +58,25 @@ class HillClimber:
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
         """
+        # the amount of iterations the hillclimber will have
         self.iterations = iterations
 
         for iteration in range(iterations):
-            # # Nice trick to only print if variable is set to True
-            # print(f'Iteration {iteration}/{iterations}, current value: {self.value}') if verbose else None
 
-            # Create a copy of the graph to simulate the change
+            # create a copy of the graph to simulate the change
             new_routes = copy.deepcopy(self.hc_startingroutes)
 
-            self.mutate_single_route(new_routes.routes)
+            # change a single route
+            self.mutate_single_route(new_routes)
 
-            # Accept it if it is better
+            # accept it if it is better
             self.compare_score(new_routes)
+
+        # count the duration
+        total_time = 0
+        for i in range(len(self.hc_startingroutes.routes)):
+            total_time += self.hc_startingroutes.routes[i].duration
+
+        # return the final route with the highest score
+        final_routes = Routes(self.hc_startingroutes.routes, total_time, self.connections)
+        return final_routes
