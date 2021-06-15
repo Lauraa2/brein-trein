@@ -51,4 +51,5 @@ if __name__ == "__main__":
     #vision = vision.print_stations(network.stations, random_routes)
 
     # Run HillClimber
-    #climber = hillclimber.HillClimber(random_routes)
+    climber = hillclimber.HillClimber(one_route, data.stations, time, connections)
+    climber.run(1000)

@@ -9,10 +9,10 @@ class Routes():
         self.routes = routes
         self.duration = duration
         self.connections = connections
-        self.score = self.calculate_score()
+        self.score = self.calculate_score(self.duration, self.connections)
         self.print_results()
     
-    def calculate_score(self):
+    def calculate_score(self, duration, connections):
         """
         Method to calculate the score from all routes
         """ 
@@ -38,8 +38,8 @@ class Routes():
 
 
         # bereken score
-        score = float(p)*10000 - (int(counter)*100 + int(self.duration))
-        print(score)
+        score = float(p)*10000 - (int(counter)*100 + int(duration))
+        # print(score)
         return score
 
     def print_results(self):
