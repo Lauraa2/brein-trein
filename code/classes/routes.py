@@ -69,9 +69,3 @@ class Routes():
                 thewriter.writerow({'train': trains_count, 'stations': list_of_routes})
 
             thewriter.writerow({'train': 'score', 'stations': self.score})
-        
-
-     
-
-
-

@@ -1,6 +1,6 @@
 from code.classes import network, routes, route
 from sys import argv
-from code.algorithms import random
+from code.algorithms import random_alg
 from code.algorithms import hillclimber
 from code.classes.routes import Routes
 from code.visualisations import vision
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     #route = route.Route(network.stations)
 
     # Create random routes and print results
-    one_route = random.get_random_routes(data.stations, connections, time, counter)
+    one_route = random_alg.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
 
     """
