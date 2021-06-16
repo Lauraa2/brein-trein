@@ -1,7 +1,8 @@
+from random import random
 from code.classes import network, routes, route
 from sys import argv
 from code.algorithms import random_alg
-from code.algorithms import hillclimber
+from code.algorithms import hillclimber 
 from code.classes.routes import Routes
 from code.visualisations import vision
 import matplotlib.pyplot as plt
@@ -34,13 +35,10 @@ if __name__ == "__main__":
     #route = route.Route(network.stations)
 
     # Create random routes and print results
-    one_route = random_alg.get_random_routes(data.stations, connections, time, counter)
+    #one_route = random_alg.get_random_route(data.stations, time)
+    #print(one_route.stations)
+    one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
-
-    """
-    retrieve a random solution and draw it
-    """
-    #routes = random.get_random_routes(network.stations, connections)
 
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
@@ -50,7 +48,11 @@ if __name__ == "__main__":
     #vision = vision.print_stations(network.stations, random_routes)
 
     # Run HillClimber
-    #climber = hillclimber.HillClimber(one_route, data.stations, time, connections)
-    #run_climber = climber.run(1000)
+    climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
+    #print(climber.new_routes)
+    climber_routes = climber.run(100)
+    print(f'max: {climber_routes.score}')
+    climber_routes.print_results()
 
-    vision.draw_solution(f'solutions/csv_files/{one_route.filename}', data)
+    #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
+

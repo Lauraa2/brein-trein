@@ -4,91 +4,71 @@ from code.classes.route import Route
 import copy
           
 def get_random_route(network, total_time):
-    """
-    Function to get one random route
-    - Time per route is less than 2 hours
-    """
     # kopieer de stations en stop ze in een lijst zodat we een random object kunnen vinden
     copy_stations = copy.deepcopy(network)
-    copy_stations_list = list(copy_stations.items())
+    # dit volgende heb ik veranderd naar een lijst met alleen objecten in plaats van ook namen (namen zit al in het object)
+    copy_stations_list = list(copy_stations.values())
 
-    # maak een lege lijst aan voor stations 
-    stations = []
+    # Initiate a route object (E)
+    route = Route()
 
     # pak een random station uit de lijst met stationnetjes
     start_station = random.choice(copy_stations_list) # geeft een random object ('Amsterdam Centraal', <code.classes.station.Station object at 0x7fd015d33310>)
 
-    # voeg het station toe aan een lijst die de connecties gaat laden 
-    stations.append(start_station)
+    # Add starting station to route (E)
+    route.add_station(start_station)
 
-    # zet de tijd op 0 voor een nieuw traject
-    time = 0
+    while route.current_time() <= total_time:
+        # Get the connections from the currently last visited station (E)
+        current_station = route.last_station()
+        possible_connections = current_station.get_connections()
 
-    while time <= total_time:
-        
-        # pak het laatst toegevoegde station uit de lijst als nieuw station
-        connections_start_station = list(stations[-1][1].connections.items())
+        # Heuristic chooses closest station as the next (E)
+        possible_connections.sort(key=lambda a:float(a[1]))
+        new_station = possible_connections[0]
 
-        # heuristiek om als volgende station de dichtstbijzijnde te nemen
-        connections_start_station.sort(key=lambda a:float(a[1]))
-        new_station = connections_start_station[0]
-
-        # verwijder de connectie zodat de volgende keer het station wat daarna komt wordt gekozen
-        for connection in stations[-1][1].connections:
-            #print(connection)
+        for connection in possible_connections: # this I did slightly different (tuples instead of dict) (E)
             if connection == new_station[0]:
-                del connection        
+                del connection 
 
-        # een random connection als volgende station ipv de dichtstbijzijnde
-        random_connection = random.choice(connections_start_station)
-
-        #print(stations)
-        for station in stations:
-            if random_connection[0] == station[0]:
-                # print(random_connection[0])
-                # print(station[0])
-                if len(connections_start_station) >= 2:
-                    connections_start_station.remove(random_connection)
-                    random_connection = random.choice(connections_start_station)
-                else:
-                    connections_start_station
-
+        # Choose a random connection that is not already present in the route (E)
+        while True:
+            random_connection = random.choice(possible_connections)
+            if route.check_station(random_connection[0]) and len(possible_connections) >= 2:
+                possible_connections.remove(random_connection)
+            else:
+                break
+        
         random_connection_name = random_connection[0]
 
         time_route = float(random_connection[1])
 
         # add the station object of the connection to the stations list
         for station in copy_stations_list:
-            if station[0] == random_connection_name:
-                stations.append(station)
+            if station.name == random_connection_name:
+                route.add_station(station)
             
         # update de totale tijd van de route
-        time += time_route
+        route.update_time(time_route)
+    
+        # Check whether the duration does not exceed the maximum time
+        if route.current_time() > total_time:
+            route.update_time(- time_route)
+            route.remove_last_station()
+            break
 
-        # update het aantal routes
-        if time == total_time:
-            route = Route(stations, time)
-            return route
-        elif time > total_time:
-            # verwijder het laatste station uit de lijst, zodat de tijd niet over 120 of 180 gaat
-            time -= time_route
-            stations.pop()
-            route = Route(stations, time)
-            return route
+    return route
 
 def get_random_routes(network, connections, total_time, total_counter):
-    """
-    random function to get max seven routes
-    """
     counter = 0
-    routes = []
-    duration = 0
+    routes = Routes(connections) 
+
     while counter < total_counter:
         route = get_random_route(network, total_time)
-        routes.append(route)
-        counter += 1
-        duration += route.duration
 
-        if counter == total_counter:
-            new_routes = Routes(routes, duration, connections)
-            return new_routes
+        routes.add_route(route)
+        routes.update_duration(route.duration)
+        
+        counter += 1
+
+    return routes
