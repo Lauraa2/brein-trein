@@ -50,7 +50,7 @@ if __name__ == "__main__":
     #vision = vision.print_stations(network.stations, random_routes)
 
     # Run HillClimber
-    climber = hillclimber.HillClimber(one_route, data.stations, time, connections)
-    run_climber = climber.run(1000)
+    #climber = hillclimber.HillClimber(one_route, data.stations, time, connections)
+    #run_climber = climber.run(1000)
 
-    vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
+    vision.draw_solution(f'solutions/csv_files/{one_route.filename}', data)
