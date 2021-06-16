@@ -8,6 +8,7 @@ class Greedy:
     """
     def __init__(self, network, total_time):
         self.stations  = copy.deepcopy(network)
+        self.copy_stations_list = list(self.stations.values())
         self.total_time = total_time
         self.smallest_stations = self.get_smallest_stations()
         self.used_stations = []
@@ -39,12 +40,18 @@ class Greedy:
         return smallest_stations
     
     def get_start_station(self):
+        """
+        Function to get one start station for the route
+        """
         for station in self.smallest_stations:
             if station not in self.used_stations:
                 self.used_stations.append(station)
                 return station
     
     def get_route(self):
+        """
+        Function to get one route based on the stations most nearby
+        """
         route = Route()
         start_station = self.get_start_station()
         route.add_station(start_station)
@@ -52,9 +59,43 @@ class Greedy:
         while route.current_time() <= self.total_time:
         # Get the connections from the currently last visited station (E)
             current_station = route.last_station()
+            print(current_station)
             possible_connections = current_station.get_connections()
 
             # Heuristic chooses closest station as the next (E)
             possible_connections.sort(key=lambda a:float(a[1]))
+            print(possible_connections)
             new_station = possible_connections[0]
+            print(new_station)
+
+            for connection in possible_connections: # this I did slightly different (tuples instead of dict) (E)
+                if connection[0] == new_station[0]:
+                    possible_connections.remove(connection)
+                if route.check_station(connection) and len(possible_connections) >= 2:
+                    possible_connections.remove(connection)
+                else:
+                    break
+            
+            station_name = new_station[0]
+
+            time_route = float(new_station[1])
+
+            # add the station object of the connection to the stations list
+            for station in self.copy_stations_list:
+                if station.name == station_name:
+                    route.add_station(station)
+
+            # update the time of the route with the added station        
+            route.update_time(time_route)
+    
+            # Check whether the duration does not exceed the maximum time
+            if route.current_time() > self.total_time:
+                route.update_time(- time_route)
+                route.remove_last_station()
+                break
+
+        return route
+
+            
+            
             
