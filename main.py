@@ -54,5 +54,5 @@ if __name__ == "__main__":
     print(f'max: {climber_routes.score}')
     climber_routes.print_results()
 
-    #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
+    vision.draw_solution(f'solutions/csv_files/{climber_routes.filename}', data)
 
