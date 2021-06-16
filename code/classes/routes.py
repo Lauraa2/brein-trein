@@ -5,14 +5,26 @@ from code.visualisations import vision
 #from .network import Network
 
 class Routes():
-    def __init__(self, routes, duration, connections):
-        self.routes = routes
-        self.duration = duration
+    def __init__(self, connections):
         self.connections = connections
-        self.score = self.calculate_score(self.duration, self.connections)
-        self.print_results()
+        
+        self.routes = []
+        self.duration = 0
+        self.score = 0
+        
+        #self.score = self.calculate_score(self.duration, self.connections) # dit zou ik niet bij init aanroepen
+        #self.print_results() Dit zou ik pas aanroepen als je een oplossing hebt die je ook echt wil printen
     
-    def calculate_score(self, duration, connections):
+    def add_route(self, route):
+        self.routes.append(route)
+
+    def update_duration(self, time):
+        self.duration += time
+
+    def remove_route(self, route):
+        self.routes.remove(route)
+    
+    def calculate_score(self):
         """
         Method to calculate the score from all routes
         """ 
@@ -20,27 +32,26 @@ class Routes():
         connections_used = []
 
         for route in self.routes:
-            for i in range(1, len(route.route)):
-                end_station = route.route[i]
-                start_station = route.route[i - 1]
+            for i in range(1, len(route.stations)):
+                end_station = route.stations[i]
+                start_station = route.stations[i - 1]
                 check = True
 
         # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
                 for connection_used in connections_used:
-                    if connection_used[0] == start_station[0] and connection_used[1] == end_station[0]:
+                    if connection_used[0] == start_station.name and connection_used[1] == end_station.name:
                         check = False
 
                 if check != False:
-                    connections_used.append((start_station[0], end_station[0]))
+                    connections_used.append((start_station.name, end_station.name))
         
         # bereken p
         p = len(connections_used)/len(self.connections)
 
-
         # bereken score
-        score = float(p)*10000 - (int(counter)*100 + int(duration))
+        self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))    # hier heb ik self.score van gemaakt (E)
         # print(score)
-        return score
+        return self.score
 
     def print_results(self):
         """
@@ -59,8 +70,8 @@ class Routes():
                 list_of_routes = []
                 trains_count += 1
 
-                for station in route.route:
-                    route = station[0]
+                for station in route.stations:
+                    route = station.name
                     list_of_routes.append(route)
 
                 # Ensure the printable has the appropriate format

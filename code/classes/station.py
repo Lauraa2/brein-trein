@@ -11,7 +11,8 @@ class Station():
     def add_connection(self, connection, distance):
         self.connections[connection] = distance   
        
-
+    def get_connections(self):
+        return list(self.connections.items())
 
         
         
