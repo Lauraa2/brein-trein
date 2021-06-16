@@ -7,6 +7,9 @@ from code.classes.routes import Routes
 from code.visualisations import vision
 import matplotlib.pyplot as plt
 
+import statistics
+import csv
+
 if __name__ == "__main__":
 
     if len(argv) == 2:
@@ -50,9 +53,7 @@ if __name__ == "__main__":
     # Run HillClimber
     climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
     #print(climber.new_routes)
-    climber_routes = climber.run(100)
-    print(f'max: {climber_routes.score}')
+    climber_routes = climber.run(1000000, 'connections')
     climber_routes.print_results()
 
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
-

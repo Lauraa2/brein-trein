@@ -51,7 +51,7 @@ class Routes():
         """
         Returns True if all available connections are being used, else False
         """
-        if self.calculate_fraction_connections == 1:
+        if self.calculate_fraction_connections() == 1.0:
             return True
 
         return False

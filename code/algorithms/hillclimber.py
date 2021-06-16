@@ -60,7 +60,8 @@ class HillClimber:
 
     def run(self, iterations, type):
         """
-        Runs the hillclimber algorithm for a specific amount of iterations.
+        Runs the hillclimber algorithm for a specific amount of iterations
+        Requires to be told what it has to look at: the score or the fraction of used connections
         """
         if type != 'score' and type != 'connections':
             print('ERROR: for hillclimber choose either \'score\' or \'connections\'')
@@ -82,7 +83,7 @@ class HillClimber:
                     self.best_routes.calculate_score()
                     return self.best_routes
         
-        if type == 'connections' and not self.best_routes.check_all_connections():
+        if type == 'connections':
             print('Failed to cover all connections ):')
         
         # return the final route with the highest score
