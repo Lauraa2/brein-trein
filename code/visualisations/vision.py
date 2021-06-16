@@ -21,7 +21,7 @@ def draw_solution(solution_csv, network): # The routes is needed to get all coor
     file = open(solution_csv)
     reader = csv.DictReader(file)
     
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(13, 13))
 
     # Initialize counter
     c = 0
