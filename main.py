@@ -3,6 +3,7 @@ from code.classes import network, routes, route
 from sys import argv
 from code.algorithms import random_alg
 from code.algorithms import hillclimber 
+from code.algorithms import greedy
 from code.classes.routes import Routes
 from code.visualisations import vision
 import matplotlib.pyplot as plt
@@ -31,6 +32,8 @@ if __name__ == "__main__":
     # Create a network from our data
     #network = network.Network()
     connections = data.get_connections()
+
+    #greedy_route = greedy.Greedy(data.stations, time)
 
     #route = route.Route(network.stations)
 
