@@ -20,14 +20,14 @@ class Greedy:
         i.e. in the beginning it will return all stations with one connection, once those are gone all stations with two connections.
         """
         smallest_stations = []
-        used_stations = []
+
+        stations = list(self.stations.values())
+        print(stations)
 
         # Iterate through all possible stations
         for station in list(self.stations.values()):
-            # Check if this station is already being used
-            if station in used_stations:
-                continue
             # Add the station to the list if the list is empty
+            
             elif not smallest_stations:
                 smallest_stations.append(station)
             # Replace the list if the current station has less connections than the stations currently in the list
