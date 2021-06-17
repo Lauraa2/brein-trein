@@ -7,6 +7,9 @@ class Station():
         self.x = x 
         self.y = y
         self.connections = {}
+
+    def __repr__(self):
+        return f'obj:{self.name}'
         
     def add_connection(self, connection, distance):
         self.connections[connection] = distance   
