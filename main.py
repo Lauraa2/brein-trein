@@ -8,6 +8,9 @@ from code.classes.routes import Routes
 from code.visualisations import vision
 import matplotlib.pyplot as plt
 
+import statistics
+import csv
+
 if __name__ == "__main__":
 
     if len(argv) == 2:
@@ -33,14 +36,14 @@ if __name__ == "__main__":
     #network = network.Network()
     connections = data.get_connections()
 
-    #greedy_route = greedy.Greedy(data.stations, time)
+    greedy_route = greedy.Greedy(data.stations, time, connections)
 
     #route = route.Route(network.stations)
 
     # Create random routes and print results
     #one_route = random_alg.get_random_route(data.stations, time)
     #print(one_route.stations)
-    one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+    #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
 
     #stations = random.get_random_routes(network.stations, connections)
@@ -51,11 +54,9 @@ if __name__ == "__main__":
     #vision = vision.print_stations(network.stations, random_routes)
 
     # Run HillClimber
-    climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
+    #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
     #print(climber.new_routes)
-    climber_routes = climber.run(100)
-    print(f'max: {climber_routes.score}')
-    climber_routes.print_results()
+    #climber_routes = climber.run(1000000, 'connections')
+    #climber_routes.print_results()
 
-    vision.draw_solution(f'solutions/csv_files/{climber_routes.filename}', data)
-
+    #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
