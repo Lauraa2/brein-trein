@@ -11,9 +11,6 @@ class Routes():
         self.routes = []
         self.duration = 0
         self.score = 0
-        
-        #self.score = self.calculate_score(self.duration, self.connections) # dit zou ik niet bij init aanroepen
-        #self.print_results() Dit zou ik pas aanroepen als je een oplossing hebt die je ook echt wil printen
     
     def add_route(self, route):
         self.routes.append(route)
@@ -24,20 +21,20 @@ class Routes():
     def remove_route(self, route):
         self.routes.remove(route)
     
-    def calculate_score(self):
+    def calculate_fraction_connections(self):
         """
-        Method to calculate the score from all routes
-        """ 
-        counter = len(self.routes)
+        Calculates what fraction of the total available connections is being used
+        """
         connections_used = []
 
         for route in self.routes:
             for i in range(1, len(route.stations)):
                 end_station = route.stations[i]
                 start_station = route.stations[i - 1]
+                
                 check = True
 
-        # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
+                # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
                 for connection_used in connections_used:
                     if connection_used[0] == start_station.name and connection_used[1] == end_station.name:
                         check = False
@@ -46,7 +43,25 @@ class Routes():
                     connections_used.append((start_station.name, end_station.name))
         
         # bereken p
-        p = len(connections_used)/len(self.connections)
+        fraction = len(connections_used)/len(self.connections)
+
+        return fraction
+
+    def check_all_connections(self):
+        """
+        Returns True if all available connections are being used, else False
+        """
+        if self.calculate_fraction_connections() == 1.0:
+            return True
+
+        return False
+    
+    def calculate_score(self):
+        """
+        Method to calculate the score from all routes
+        """ 
+        counter = len(self.routes)
+        p = self.calculate_fraction_connections()
 
         # bereken score
         self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))    # hier heb ik self.score van gemaakt (E)

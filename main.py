@@ -8,6 +8,9 @@ from code.classes.routes import Routes
 from code.visualisations import vision
 import matplotlib.pyplot as plt
 
+import statistics
+import csv
+
 if __name__ == "__main__":
 
     if len(argv) == 2:
@@ -54,25 +57,35 @@ if __name__ == "__main__":
 
     algorithm = input("Select: ")
 
-    if int(algorithm) == 1: 
+    if int(algorithm) == 1:
+        print(one_routes.calculate_score()) 
         one_routes.print_results()
 
-    if int(algorithm) == 2: 
-        # Run HillClimber
+    if int(algorithm) == 2:
+        
+        # load climber
         climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
-        #print(climber.new_routes)
-        climber_routes = climber.run(100)
-        print(f'max: {climber_routes.score}')
+
+        print("For a HillClimber focused on score, type 1")
+        print("For a HillClimber focused on connections, type 2")
+
+        focus = input("Select: ") 
+
+        if int(focus) == 1:
+            climber_routes = climber.run(1, 'score')
+
+        elif int(focus) == 2:
+            climber_routes = climber.run(10, 'connections')
+
+        #print(f'max: {climber_routes.score}')
         climber_routes.print_results()
 
 
 
     # Run HillClimber
-    # climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
-    # #print(climber.new_routes)
-    # climber_routes = climber.run(100)
-    # print(f'max: {climber_routes.score}')
+    #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
+    #print(climber.new_routes)
+    # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
 
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
-

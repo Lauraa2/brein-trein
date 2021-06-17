@@ -21,7 +21,7 @@ def draw_solution(solution_csv, network): # The routes is needed to get all coor
     file = open(solution_csv)
     reader = csv.DictReader(file)
     
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(13, 13))
 
     # Initialize counter
     c = 0
@@ -49,12 +49,12 @@ def draw_solution(solution_csv, network): # The routes is needed to get all coor
             station = network.stations[station_name]
 
             # Save the coordinates
-            x_values.append(station.x)
-            y_values.append(station.y)
+            x_values.append(station.y)
+            y_values.append(station.x)
             
             # Add the name of the station to the point in the plot, but only if not too big
             if network.stationfile == f"data/StationsHolland.csv":
-                plt.annotate(station.name, (station.x, station.y))                 
+                plt.annotate(station.name, (station.y, station.x))                 
 
         plt.plot(x_values, y_values, marker='o', color=colors[c], label=f'train {c+1}')
 
@@ -66,7 +66,7 @@ def draw_solution(solution_csv, network): # The routes is needed to get all coor
     file.close()
     
     # Plot the figure
-    plt.legend(loc='lower left')
+    plt.legend(loc='upper left')
     plt.title(f'score = {score}')
 
     filename = get_file_name(score, '.png')
