@@ -49,13 +49,30 @@ if __name__ == "__main__":
 
     # Create visualisation from our results
     #vision = vision.print_stations(network.stations, random_routes)
+    print("For a random solution, type 1")
+    print("For a HillClimber algorithm, type 2")
+
+    algorithm = input("Select: ")
+
+    if int(algorithm) == 1: 
+        one_routes.print_results()
+
+    if int(algorithm) == 2: 
+        # Run HillClimber
+        climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
+        #print(climber.new_routes)
+        climber_routes = climber.run(100)
+        print(f'max: {climber_routes.score}')
+        climber_routes.print_results()
+
+
 
     # Run HillClimber
-    climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
-    #print(climber.new_routes)
-    climber_routes = climber.run(100)
-    print(f'max: {climber_routes.score}')
-    climber_routes.print_results()
+    # climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
+    # #print(climber.new_routes)
+    # climber_routes = climber.run(100)
+    # print(f'max: {climber_routes.score}')
+    # climber_routes.print_results()
 
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
 
