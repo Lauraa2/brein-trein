@@ -36,14 +36,19 @@ if __name__ == "__main__":
     #network = network.Network()
     connections = data.get_connections()
 
+<<<<<<< HEAD
     greedy_route = greedy.Greedy(data.stations, time, connections)
+=======
+    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    #greedy_routes.print_results()
+>>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
 
     #route = route.Route(network.stations)
 
     # Create random routes and print results
     #one_route = random_alg.get_random_route(data.stations, time)
     #print(one_route.stations)
-    #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+    one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
 
     #stations = random.get_random_routes(network.stations, connections)
@@ -52,11 +57,45 @@ if __name__ == "__main__":
 
     # Create visualisation from our results
     #vision = vision.print_stations(network.stations, random_routes)
+    print("For a random solution, type 1")
+    print("For a HillClimber algorithm, type 2")
+
+    algorithm = input("Select: ")
+
+    if int(algorithm) == 1:
+        print(one_routes.calculate_score()) 
+        one_routes.print_results()
+
+    if int(algorithm) == 2:
+        
+        # load climber
+        climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
+
+        print("For a HillClimber focused on score, type 1")
+        print("For a HillClimber focused on connections, type 2")
+
+        focus = input("Select: ") 
+
+        if int(focus) == 1:
+            climber_routes = climber.run(1, 'score')
+
+        elif int(focus) == 2:
+            climber_routes = climber.run(10, 'connections')
+
+        #print(f'max: {climber_routes.score}')
+        climber_routes.print_results()
+
+
 
     # Run HillClimber
     #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
     #print(climber.new_routes)
+<<<<<<< HEAD
     #climber_routes = climber.run(1000000, 'connections')
     #climber_routes.print_results()
+=======
+    # climber_routes = climber.run(1000000, 'connections')
+    # climber_routes.print_results()
+>>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
 
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
