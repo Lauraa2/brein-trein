@@ -36,7 +36,8 @@ if __name__ == "__main__":
     #network = network.Network()
     connections = data.get_connections()
 
-    #greedy_route = greedy.Greedy(data.stations, time)
+    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    #greedy_routes.print_results()
 
     #route = route.Route(network.stations)
 
