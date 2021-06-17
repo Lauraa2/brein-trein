@@ -1,4 +1,5 @@
 import copy
+import random
 from code.classes.route import Route
 
 class Greedy:
@@ -21,17 +22,15 @@ class Greedy:
         """
         smallest_stations = []
 
-        stations = list(self.stations.values())
-        print(stations)
-
         # Iterate through all possible stations
-        for station in list(self.stations.values()):
+        for station in self.copy_stations_list:
             # Add the station to the list if the list is empty
+            smallest_stations.append(station)
             
-            elif not smallest_stations:
-                smallest_stations.append(station)
+            #elif not smallest_stations:
+                #smallest_stations.append(station)
             # Replace the list if the current station has less connections than the stations currently in the list
-            elif len(station.connections) < len(smallest_stations[0].connections):
+            if len(station.connections) < len(smallest_stations[-1].connections):
                 smallest_stations.clear()
                 smallest_stations.append(station)
             # If the current station has as many connections as the stations already in the list, add it
@@ -47,6 +46,8 @@ class Greedy:
             if station not in self.used_stations:
                 self.used_stations.append(station)
                 return station
+            elif station in self.used_stations:
+                continue
     
     def get_route(self):
         """
@@ -65,16 +66,17 @@ class Greedy:
             # Heuristic chooses closest station as the next (E)
             possible_connections.sort(key=lambda a:float(a[1]))
             print(possible_connections)
-            new_station = possible_connections[0]
-            print(new_station)
-
-            for connection in possible_connections: # this I did slightly different (tuples instead of dict) (E)
-                if connection[0] == new_station[0]:
-                    possible_connections.remove(connection)
-                if route.check_station(connection) and len(possible_connections) >= 2:
-                    possible_connections.remove(connection)
-                else:
+            for station in possible_connections:
+                if station not in self.used_stations:
+                    new_station = station
+                    self.used_stations.append(new_station)
+                    no_station = False
                     break
+            
+            if no_station != False:
+                new_station = random.choice(possible_connections)
+
+            print(new_station)
             
             station_name = new_station[0]
 
@@ -95,6 +97,20 @@ class Greedy:
                 break
 
         return route
+    
+    def get_routes(network, connections, total_time, total_counter):
+    counter = 0
+    routes = Routes(connections) 
+
+    while counter < total_counter:
+        route = self.get_route(network, total_time)
+
+        routes.add_route(route)
+        routes.update_duration(route.duration)
+        
+        counter += 1
+
+    return routes
 
             
             
