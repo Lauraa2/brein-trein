@@ -32,12 +32,11 @@ def get_random_route(network, total_time):
                 del connection 
 
         # Choose a random connection that is not already present in the route (E)
-        while True:
-            random_connection = random.choice(possible_connections)
-            if route.check_station(random_connection[0]) and len(possible_connections) >= 2:
-                possible_connections.remove(random_connection)
-            else:
-                break
+        random_connection = random.choice(possible_connections)
+        if route.check_station(random_connection[0]) and len(possible_connections) >= 2:
+            possible_connections.remove(random_connection)
+        else:
+            break
         
         random_connection_name = random_connection[0]
 

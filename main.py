@@ -35,10 +35,12 @@ if __name__ == "__main__":
     # retrieve the list of all connections
     connections = data.get_connections()
 
-    #greedy_route = greedy.Greedy(data.stations, time)
+    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    #greedy_routes.print_results()
 
     # create a random trajectory
     random_trajectory = random_alg.get_random_routes(data.stations, connections, time, counter)
+    #sroute = route.Route(network.stations)
 
     # ask user for specific algorithm
     print("For a random solution, type 1")
