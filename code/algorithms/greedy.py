@@ -66,7 +66,7 @@ class Greedy:
             possible_connections.sort(key=lambda a:float(a[1]))
             print(possible_connections)
             for connection in possible_connections:
-                if self.used_connections == []:
+                if not self.used_connections:
                     self.used_connections.append((current_station.name, connection))
                     new_station = connection
                     station_name = new_station[0]
@@ -75,7 +75,7 @@ class Greedy:
         
                 else:
                     for used_connection in self.used_connections:
-                        if used_connection[0] != current_station.name and used_connection[1] != connection[0] or len(possible_connections) >= 1:
+                        if used_connection[0] != current_station.name and used_connection[1] != connection[0] or len(possible_connections) == 1:
                             self.used_connections.append((current_station.name, connection))
                             new_station = connection
                             station_name = new_station[0]
