@@ -36,14 +36,10 @@ if __name__ == "__main__":
     #network = network.Network()
     connections = data.get_connections()
 
-<<<<<<< HEAD
-    greedy_route = greedy.Greedy(data.stations, time, connections)
-=======
     greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
     #greedy_routes.print_results()
->>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
 
-    #route = route.Route(network.stations)
+    #sroute = route.Route(network.stations)
 
     # Create random routes and print results
     #one_route = random_alg.get_random_route(data.stations, time)
@@ -90,12 +86,7 @@ if __name__ == "__main__":
     # Run HillClimber
     #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
     #print(climber.new_routes)
-<<<<<<< HEAD
-    #climber_routes = climber.run(1000000, 'connections')
-    #climber_routes.print_results()
-=======
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
->>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
 
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)

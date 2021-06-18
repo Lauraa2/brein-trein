@@ -1,31 +1,19 @@
 import copy
 import random
 from code.classes.route import Route
-<<<<<<< HEAD
-import numpy
-=======
 from code.classes.routes import Routes
->>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
 
 class Greedy:
     """
     The Greedy class takes first the station with the fewest connections and connects the stations to the closest connections
     - The goal is to get as many routes as possible with the lowest time possible
     """
-<<<<<<< HEAD
-    def __init__(self, network, total_time, connections):
-=======
     def __init__(self, network, total_time, connections, counter):
->>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
         self.stations  = copy.deepcopy(network)
         self.copy_stations_list = list(self.stations.values())
         self.connections = connections
         self.total_time = total_time
-<<<<<<< HEAD
-        self.connections = connections
-=======
         self.counter = counter
->>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
         self.smallest_stations = self.get_smallest_stations()
         self.used_stations = []
         self.get_routes()
@@ -50,17 +38,9 @@ class Greedy:
             #elif not smallest_stations:
                 #smallest_stations.append(station)
             # Replace the list if the current station has less connections than the stations currently in the list
-<<<<<<< HEAD
-            elif len(station.connections) < len(smallest_stations[0].connections):
-                smallest_stations.clear()
-                smallest_stations.append(station)
-                print(station)
-                self.stations.remove(station)
-=======
             #if len(station.connections) < len(smallest_stations[-1].connections):
                 #smallest_stations.clear()
                 #smallest_stations.append(station)
->>>>>>> f3b576141d126fe533c6ef2efde625384af948a3
             # If the current station has as many connections as the stations already in the list, add it
             #elif len(station.connections) == len(smallest_stations[0].connections):
                 #smallest_stations.append(station)
@@ -84,7 +64,7 @@ class Greedy:
         """
         route = Route()
         start_station = self.get_start_station()
-        print(start_station.name)
+        #print(start_station.name)
         route.add_station(start_station)
         no_station = True
 
@@ -95,16 +75,24 @@ class Greedy:
 
             # Heuristic chooses closest station as the next (E)
             possible_connections.sort(key=lambda a:float(a[1]))
-            print(possible_connections)
-            for station in possible_connections:
-                new_station = station
+            #print(possible_connections)
+            for connection in possible_connections:
+                new_station = connection
                 station_name = new_station[0]
-                print("hallo")
+                print(station_name)
+                
                 for station in self.copy_stations_list:
+                    print(station)
+                    print ('x')
                     if station.name == station_name:
+                        print("y")
+                        print(station.name)
+                        print(station_name)
+                        print(station)
+                        print("y")
                         if route.check_station(station) and len(possible_connections) >= 2:
                             print('test')
-                            possible_connections.remove(new_station)
+                            possible_connections.remove(connection)
                             break 
             
             #if no_station != False:

@@ -20,6 +20,10 @@ class Route():
         Returns True if as station is already present in the route, else False
         """
         for station in self.stations:
+            print(" ")
+            print(station)
+            print(given_station)
+            print(" ")
             if station == given_station:
                 return True
         return False
