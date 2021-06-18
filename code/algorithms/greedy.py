@@ -16,6 +16,7 @@ class Greedy:
         self.counter = counter
         self.smallest_stations = self.get_smallest_stations()
         self.used_stations = []
+        self.used_connections = []
         self.get_routes()
     
     def get_smallest_stations(self):
@@ -30,28 +31,17 @@ class Greedy:
         # Iterate through all possible stations
         for station in self.copy_stations_list:
             stations_connections[station] = len(station.connections)
-            # Add the station to the list if the list is empty
+
+            # Make a dictionary of all stations, sorted from few to many connections
             sorted_stations=dict(sorted(stations_connections.items(),key= lambda x:x[1]))
 
-        print(sorted_stations)
         return sorted_stations
-            #elif not smallest_stations:
-                #smallest_stations.append(station)
-            # Replace the list if the current station has less connections than the stations currently in the list
-            #if len(station.connections) < len(smallest_stations[-1].connections):
-                #smallest_stations.clear()
-                #smallest_stations.append(station)
-            # If the current station has as many connections as the stations already in the list, add it
-            #elif len(station.connections) == len(smallest_stations[0].connections):
-                #smallest_stations.append(station)
-        #return smallest_stations
     
     def get_start_station(self):
         """
         Function to get one start station for the route
         """
         for station in self.smallest_stations:
-            print(station)
             if station not in self.used_stations:
                 self.used_stations.append(station)
                 return station
@@ -64,9 +54,8 @@ class Greedy:
         """
         route = Route()
         start_station = self.get_start_station()
-        #print(start_station.name)
         route.add_station(start_station)
-        no_station = True
+        check = False
 
         while route.current_time() <= self.total_time:
         # Get the connections from the currently last visited station (E)
@@ -75,46 +64,39 @@ class Greedy:
 
             # Heuristic chooses closest station as the next (E)
             possible_connections.sort(key=lambda a:float(a[1]))
-            #print(possible_connections)
+            print(possible_connections)
             for connection in possible_connections:
-                new_station = connection
-                station_name = new_station[0]
-                print(station_name)
+                if self.used_connections == []:
+                    self.used_connections.append((current_station.name, connection))
+                    new_station = connection
+                    station_name = new_station[0]
+                    check == True
+                    break
+        
+                else:
+                    for used_connection in self.used_connections:
+                        if used_connection[0] != current_station.name and used_connection[1] != connection[0] or len(possible_connections) >= 1:
+                            self.used_connections.append((current_station.name, connection))
+                            new_station = connection
+                            station_name = new_station[0]
+                            check == True
+                            print(station_name)
+                            break
+            
+                if check != True:
+                    continue
+    
                 
-                for station in self.copy_stations_list:
-                    print(station)
-                    print ('x')
-                    if station.name == station_name:
-                        print("y")
-                        print(station.name)
-                        print(station_name)
-                        print(station)
-                        print("y")
-                        if route.check_station(station) and len(possible_connections) >= 2:
-                            print('test')
-                            possible_connections.remove(connection)
-                            break 
-            
-            #if no_station != False:
-                #new_station = random.choice(possible_connections)
-            
-            station_name = new_station[0]
-
-            time_route = float(new_station[1])
-
-            # add the station object of the connection to the stations list
             for station in self.copy_stations_list:
                 if station.name == station_name:
                     route.add_station(station)
-
-            # update the time of the route with the added station        
+            
+            time_route = float(new_station[1])
             route.update_time(time_route)
-    
-            # Check whether the duration does not exceed the maximum time
             if route.current_time() > self.total_time:
                 route.update_time(- time_route)
                 route.remove_last_station()
-                break
+                break         
 
         return route
     
