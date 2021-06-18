@@ -39,7 +39,7 @@ if __name__ == "__main__":
     greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
     #greedy_routes.print_results()
 
-    #route = route.Route(network.stations)
+    #sroute = route.Route(network.stations)
 
     # Create random routes and print results
     #one_route = random_alg.get_random_route(data.stations, time)

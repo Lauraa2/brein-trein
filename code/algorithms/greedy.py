@@ -26,6 +26,8 @@ class Greedy:
         """
         stations_connections = {}
 
+        print(self.connections)
+
         # Iterate through all possible stations
         for station in self.copy_stations_list:
             stations_connections[station] = len(station.connections)
