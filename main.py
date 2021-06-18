@@ -57,7 +57,7 @@ if __name__ == "__main__":
     all_time = []
     all_score = []
     
-    for i in range(100):
+    for i in range(10):
         print(i)
         # Run simulated annealing
         one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
@@ -72,14 +72,14 @@ if __name__ == "__main__":
 
         all_time.append(solution.duration)
 
-    with open(f'solutions/analyse/SA_1000.csv', 'w', newline='') as csvfile:
+    with open(f'solutions/analyse/SA_100.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['p', all_p])
         writer.writerow(['score', all_score])
         writer.writerow(['time', all_time])
 
-    '''
-    with open(f'solutions/analyse/SA_2000.csv') as file:
+    
+    with open(f'solutions/analyse/SA_100.csv') as file:
             reader = csv.reader(file)
             values = next(reader)
             values = next(reader)
@@ -90,7 +90,7 @@ if __name__ == "__main__":
             average = sum(values) / len(values)
 
     print(average)
-    
+    '''
     '''
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)

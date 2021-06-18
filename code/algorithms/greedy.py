@@ -70,7 +70,7 @@ class Greedy:
                     self.used_connections.append((current_station.name, connection))
                     new_station = connection
                     station_name = new_station[0]
-                    check == True
+                    check = True
                     break
         
                 else:
@@ -79,7 +79,7 @@ class Greedy:
                             self.used_connections.append((current_station.name, connection))
                             new_station = connection
                             station_name = new_station[0]
-                            check == True
+                            check = True
                             print(station_name)
                             break
             
