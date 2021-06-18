@@ -49,12 +49,18 @@ class HillClimber:
             self.best_routes = self.new_routes
 
     def compare_connections(self):
+        """
+        Checks and accepts better solutions than the current solution.
+        Judgement is based on the amount of used connections.
+        """ 
+        # calculate the old and new scores       
         old_fraction = self.best_routes.calculate_fraction_connections()
         new_fraction = self.new_routes.calculate_fraction_connections()
 
         print(old_fraction)
         print(new_fraction)
 
+        # update the score and route if the new route is better than the old route
         if new_fraction > old_fraction:
             self.best_routes = self.new_routes
 
