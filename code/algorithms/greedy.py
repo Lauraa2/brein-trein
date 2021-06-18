@@ -53,6 +53,7 @@ class Greedy:
         route = Route()
         start_station = self.get_start_station()
         route.add_station(start_station)
+        check = False
 
         while route.current_time() <= self.total_time:
         # Get the connections from the currently last visited station (E)
@@ -67,39 +68,33 @@ class Greedy:
                     self.used_connections.append((current_station.name, connection))
                     new_station = connection
                     station_name = new_station[0]
-                    for station in self.copy_stations_list:
-                        if station.name == station_name:
-                            route.add_station(station)
-                            time_route = float(new_station[1])
-
-                            # update the time of the route with the added station        
-                            route.update_time(time_route)
-                            if route.current_time() > self.total_time:
-                                route.update_time(- time_route)
-                                route.remove_last_station()
-                                break
-                        else:       
-                            continue
+                    check == True
+                    break
+        
                 else:
                     for used_connection in self.used_connections:
                         if used_connection[0] != current_station.name and used_connection[1] != connection[0] or len(possible_connections) >= 1:
                             self.used_connections.append((current_station.name, connection))
                             new_station = connection
                             station_name = new_station[0]
+                            check == True
                             print(station_name)
-                            for station in self.copy_stations_list:
-                                if station.name == station_name:
-                                    route.add_station(station)
-                                    time_route = float(new_station[1])
-
-                                    # update the time of the route with the added station        
-                                    route.update_time(time_route)
-                                    if route.current_time() > self.total_time:
-                                        route.update_time(- time_route)
-                                        route.remove_last_station()
-                                        break
-                        else:       
-                            continue
+                            break
+            
+                if check != True:
+                    continue
+    
+                
+            for station in self.copy_stations_list:
+                if station.name == station_name:
+                    route.add_station(station)
+            
+            time_route = float(new_station[1])
+            route.update_time(time_route)
+            if route.current_time() > self.total_time:
+                route.update_time(- time_route)
+                route.remove_last_station()
+                break         
 
         return route
     
