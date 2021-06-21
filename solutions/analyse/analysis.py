@@ -51,3 +51,6 @@
     plt.xticks([0, 1,2,3,4,5,6,7])
     plt.ylabel('gemiddelde p')
     plt.savefig('solutions/analyse/c_p(1).png')
+
+
+    
