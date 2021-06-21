@@ -25,6 +25,7 @@ class HillClimber:
         self.new_routes.remove_route(random_route)
         self.new_routes.update_duration(- random_route.duration)
 
+
         # render a new random route 
         new_single_route = random_alg.get_random_route(self.data_stations, self.max_time_route)
 

@@ -40,14 +40,12 @@ for counter in range(1, 8):
         values = values.strip('[]').split(', ')
         values = list(map(float, values))
 
-        average = sum(values) / len(values)
+    plt.plot(times, averages, marker='o', color='#5f8195')
+    plt.axis([0, 8, 0, 0.7])
+    plt.xlabel('aantal trajecten')
+    plt.xticks([0, 1,2,3,4,5,6,7])
+    plt.ylabel('gemiddelde p')
+    plt.savefig('solutions/analyse/c_p(1).png')
 
-        averages.append(float(average))
-        times.append(counter)
 
-plt.plot(times, averages, marker='o', color='#5f8195')
-plt.axis([0, 8, 0, 0.7])
-plt.xlabel('aantal trajecten')
-plt.xticks([0, 1,2,3,4,5,6,7])
-plt.ylabel('gemiddelde p')
-plt.savefig('solutions/analyse/c_p(1).png')
+    

@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     
 
-    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    #greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
     #greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
@@ -45,14 +45,35 @@ if __name__ == "__main__":
     # Create random routes and print results
     #one_route = random_alg.get_random_route(data.stations, time)
     #print(one_route.stations)
-    #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+    one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
     '''
+    with open(f'solutions/analyse/SA.csv') as file:
+        reader = csv.reader(file)
+        values = next(reader)
+        values = next(reader)
+        values = values[1]
+        values = values.strip('[]').split(', ')
+        values = list(map(float, values))
+
+    times = []
+    for i in range(1000):
+        times.append(i)
+
+
+    plt.plot(times, values, marker='o', color='#5f8195')
+    plt.axis([0, 1000, 4000, 8000])
+    plt.xlabel('aantal trajecten')
+    plt.xticks(times)
+    plt.ylabel('gemiddelde p')
+    plt.savefig('solutions/analyse/SA.png')
+
+    
     one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
     SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
     solution = SA.run(1000)
     print(solution.score)
-    
+    '''
     all_p = []
     all_time = []
     all_score = []
@@ -60,9 +81,10 @@ if __name__ == "__main__":
     for i in range(100):
         print(i)
         # Run simulated annealing
-        one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
-        SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
-        solution = SA.run(1000)
+        #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+        greedy_routes = greedy.Greedy(data.stations, connections, time, counter)
+        SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
+        solution = SA.run(3)
         print(solution.score)
         p = solution.calculate_fraction_connections()
         all_p.append(p)
@@ -71,15 +93,16 @@ if __name__ == "__main__":
         all_score.append(score)
 
         all_time.append(solution.duration)
+    
 
-    with open(f'solutions/analyse/SA_co15.csv', 'w', newline='') as csvfile:
+    with open(f'solutions/analyse/SA_nationaal/1.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['p', all_p])
         writer.writerow(['score', all_score])
         writer.writerow(['time', all_time])
 
     
-    with open(f'solutions/analyse/SA_co15.csv') as file:
+    with open(f'solutions/analyse/SA_nationaal/1.csv') as file:
             reader = csv.reader(file)
             values = next(reader)
             values = next(reader)
@@ -99,6 +122,7 @@ if __name__ == "__main__":
     #vision = vision.print_stations(network.stations, random_routes)
     print("For a random solution, type 1")
     print("For a HillClimber algorithm, type 2")
+    
     algorithm = input("Select: ")
     if int(algorithm) == 1:
         print(one_routes.calculate_score()) 
@@ -123,4 +147,4 @@ if __name__ == "__main__":
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
-    
+    '''
