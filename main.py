@@ -115,6 +115,7 @@ if __name__ == "__main__":
             climber_routes = climber.run(10, 'connections')
         #print(f'max: {climber_routes.score}')
         climber_routes.print_results()
+        
     # Run HillClimber
     #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
     #print(climber.new_routes)

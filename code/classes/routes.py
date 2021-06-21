@@ -13,21 +13,12 @@ class Routes():
         self.score = 0
     
     def add_route(self, route):
-        """
-        Adds a single route to the list of total routes
-        """        
         self.routes.append(route)
 
     def update_duration(self, time):
-        """
-        Updates the time of the total routes
-        """  
         self.duration += time
 
     def remove_route(self, route):
-        """
-        Removes a single route of the list of total routes
-        """  
         self.routes.remove(route)
     
     def calculate_fraction_connections(self):
@@ -43,7 +34,7 @@ class Routes():
                 
                 check = True
 
-                # check if the connection is already been used, if not at it to the used connections
+                # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
                 for connection_used in connections_used:
                     if connection_used[0] == start_station.name and connection_used[1] == end_station.name:
                         check = False
@@ -51,7 +42,7 @@ class Routes():
                 if check != False:
                     connections_used.append((start_station.name, end_station.name))
         
-        # calculate the fraction of connections used
+        # bereken p
         fraction = len(connections_used)/len(self.connections)
 
         return fraction
@@ -72,16 +63,16 @@ class Routes():
         counter = len(self.routes)
         p = self.calculate_fraction_connections()
 
-        # calculate the score according to the quality formula
-        self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))    
-        
+        # bereken score
+        self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))    # hier heb ik self.score van gemaakt (E)
+        # print(score)
         return self.score
 
     def print_results(self):
         """
         Method to print a csv file with results
         """
-        # create a unique file name
+        # Create a unique file name
         self.filename = vision.get_file_name(self.score, '.csv')
 
         with open(f'solutions/csv_files/{self.filename}', 'w', newline='') as csvfile:
@@ -98,8 +89,8 @@ class Routes():
                     route = station.name
                     list_of_routes.append(route)
 
-                # ensure the printable has the appropriate format
-                # removes the quotation marks from around the names of the stations
+                # Ensure the printable has the appropriate format
+                # Removes the quotation marks from around the names of the stations
                 list_of_routes = ('[%s]' % ', '.join(map(str, list_of_routes)))    
                 thewriter.writerow({'train': trains_count, 'stations': list_of_routes})
 
