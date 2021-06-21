@@ -72,9 +72,12 @@ class Greedy:
                 if (current_station.name, connection[0]) not in self.used_connections:
                     self.used_connections.append((current_station.name, connection[0]))
                     random_connection_name = connection[0]
+                    print(connection[0])
                     for station in self.copy_stations_list:
                         if station.name == random_connection_name:
                             route.add_station(station)
+                            if len(possible_connections) >= 2:
+                                possible_connections.remove(connection)
                             break
                 else:
                     random_connection = random.choice(possible_connections)
