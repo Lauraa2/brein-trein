@@ -1,12 +1,9 @@
 import copy
 from hashlib import new
 import random
-from code.classes import network, routes, route
-from code.classes.routes import Routes
-from code.algorithms import hillclimber, random_alg
+from code.algorithms import random_alg
 
 import math
-import csv
 
 
 class Simulated_annealing:
@@ -24,9 +21,9 @@ class Simulated_annealing:
         self.current_routes = self.best_routes
         # starting temperature = (max decline) / math.log(chance of approval, 2)
         self.start_t = (-1000) / math.log(0.001, 2)
-        # Tracks how many iterations no new route has been accepted
+        # tracks how many iterations no new route has been accepted
         self.no_change = 0
-        # Tracks for how many iterations the temperature has been raised
+        # tracks for how many iterations the temperature has been raised
         self.counter = 0
 
     def mutate_single_route(self):
@@ -51,8 +48,8 @@ class Simulated_annealing:
         Cools the system down, unless it seems to be stuck on a value
         """
         # Heat the system when stuck
-        if self.no_change >= self.iterations * 0.1 or (self.counter > 0 and self.counter < (self.iterations * 0.01)):
-            T = self.start_t * (1 ** self.iteration)
+        if self.no_change >= self.iterations * 0.1 or (self.counter > 0 and self.counter < (self.iterations * 0.001)):
+            T = self.start_t * (1.05 ** self.iteration)
             self.counter += 1
         # Cool the system when not stuck
         else:   
@@ -84,8 +81,6 @@ class Simulated_annealing:
         else: 
             self.no_change += 1
 
-        
-
     def run(self, iterations):
         """
         Runs the hillclimber algorithm for a specific amount of iterations
@@ -101,7 +96,7 @@ class Simulated_annealing:
             self.mutate_single_route()
 
             # accept it if it is better
-            decision = self.make_decision()
+            self.make_decision()
         
         # return the final route with the highest score
         return self.best_routes

@@ -41,8 +41,8 @@ class HillClimber:
         old_score = self.best_routes.calculate_score()
         new_score = self.new_routes.calculate_score()
         
-        print(old_score)
-        print(new_score) 
+        #print(old_score)
+        #print(new_score) 
 
         # update the score and route if the new route is better than the old route
         if new_score > old_score:
