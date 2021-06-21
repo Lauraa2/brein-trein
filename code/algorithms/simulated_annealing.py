@@ -22,7 +22,7 @@ class Simulated_annealing:
         # stores the routes from which changes will be made
         self.current_routes = self.best_routes
         # starting temperature = (max decline) / math.log(chance of approval, 2)
-        self.start_t = (-1000) / math.log(0.001, 2)
+        self.start_t = (-100) / math.log(0.001, 2)
         # Tracks how many iterations no new route has been accepted
         self.no_change = 0
 
