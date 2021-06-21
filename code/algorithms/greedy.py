@@ -17,7 +17,6 @@ class Greedy:
         self.smallest_stations = self.get_smallest_stations()
         self.used_stations = []
         self.used_connections = []
-        self.get_routes()
     
     def get_smallest_stations(self):
         """
@@ -42,7 +41,6 @@ class Greedy:
         """
         Function to get one start station for the route
         """
-
         for station in self.smallest_stations:
             if station not in self.used_stations:
                 self.used_stations.append(station)
@@ -60,12 +58,10 @@ class Greedy:
         route.add_station(start_station)
 
         while route.current_time() <= self.total_time:
-            
+
         # Get the connections from the currently last visited station (E)
             current_station = route.last_station()
-            print(current_station)
             possible_connections = current_station.get_connections()
-            print(possible_connections)
 
             # Heuristic chooses closest station as the next (E)
             possible_connections.sort(key=lambda a:float(a[1]))
@@ -76,16 +72,13 @@ class Greedy:
             for connection in possible_connections:
                 connection_number += 1
                 new_station = connection
-                print(connection[0])
                 if (current_station.name, connection[0]) not in self.used_connections:
-                    print('new')
                     check_connection = False
                     self.used_connections.append((current_station.name, connection[0]))
                     random_connection_name = connection[0]
                     for station in self.copy_stations_list:
                         if station.name == random_connection_name:
                             route.add_station(station)
-                            print('added connection')
                             break
                 
                 if connection_number == len(possible_connections) and check_connection == True:
@@ -121,8 +114,6 @@ class Greedy:
             counter += 1
         
         score = routes.calculate_score()
-        print(score)
-        routes.print_results()
 
         return routes
 
