@@ -1,27 +1,50 @@
+"""
+# -------------------------------------------------------------------------------
+# routes.py
+# -------------------------------------------------------------------------------
+#
+# make routes objects
+#
+# Team de Brein Trein
+#
+"""
+
 import csv
 from code.visualisations import vision
 
+
 class Routes():
     def __init__(self, connections):
+        '''
+        routes objects
+        '''
         self.connections = connections
-        
         self.routes = []
         self.duration = 0
         self.score = 0
     
     def add_route(self, route):
+        '''
+        Add route to routes
+        '''
         self.routes.append(route)
 
     def update_duration(self, time):
+        '''
+        Update duration of all routes
+        '''
         self.duration += time
 
     def remove_route(self, route):
+        '''
+        Remove route
+        '''
         self.routes.remove(route)
     
     def calculate_fraction_connections(self):
-        """
+        '''
         Calculates what fraction of the total available connections is being used
-        """
+        '''
         connections_used = []
 
         for route in self.routes:
@@ -31,7 +54,7 @@ class Routes():
                 
                 check = True
 
-                # check of de gemaakte verbinding al is bereden of niet, zo nee, voeg toe aan verbindingen
+                # check whether the connection created has already been completed or not, if not, add to connections
                 for connection_used in connections_used:
                     if connection_used[0] == start_station.name and connection_used[1] == end_station.name:
                         check = False
@@ -39,36 +62,35 @@ class Routes():
                 if check != False:
                     connections_used.append((start_station.name, end_station.name))
         
-        # bereken p
+        # calculate p
         fraction = len(connections_used)/len(self.connections)
 
         return fraction
 
     def check_all_connections(self):
-        """
-        Returns True if all available connections are being used, else False
-        """
+        '''
+        Check if all available connections are being used
+        '''
         if self.calculate_fraction_connections() == 1.0:
             return True
 
         return False
     
     def calculate_score(self):
-        """
-        Method to calculate the score from all routes
-        """ 
+        '''
+        Method to calculate score from all routes
+        '''
         counter = len(self.routes)
         p = self.calculate_fraction_connections()
 
-        # bereken score
-        self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))    # hier heb ik self.score van gemaakt (E)
-        # print(score)
+        # calculate score
+        self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))   
         return self.score
 
     def print_results(self):
-        """
+        '''
         Method to print a csv file with results
-        """
+        '''
         # Create a unique file name
         self.filename = vision.get_file_name(self.score, '.csv')
 

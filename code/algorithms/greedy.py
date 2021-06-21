@@ -60,33 +60,47 @@ class Greedy:
         route.add_station(start_station)
 
         while route.current_time() <= self.total_time:
+            
         # Get the connections from the currently last visited station (E)
             current_station = route.last_station()
+            print(current_station)
             possible_connections = current_station.get_connections()
+            print(possible_connections)
 
             # Heuristic chooses closest station as the next (E)
             possible_connections.sort(key=lambda a:float(a[1]))
+
+            check_connection = True
+            connection_number = 0
         
             for connection in possible_connections:
+                connection_number += 1
                 new_station = connection
+                print(connection[0])
                 if (current_station.name, connection[0]) not in self.used_connections:
+                    print('new')
+                    check_connection = False
                     self.used_connections.append((current_station.name, connection[0]))
                     random_connection_name = connection[0]
+                    print(connection[0])
                     for station in self.copy_stations_list:
                         if station.name == random_connection_name:
                             route.add_station(station)
+                            print('added connection')
                             break
-                else:
+                
+                if connection_number == len(possible_connections) and check_connection == True:
+                    check_connection = False
                     random_connection = random.choice(possible_connections)
                     for station in self.copy_stations_list:
                         if station.name == random_connection[0]:
                             route.add_station(station)
                             break
 
-                time_route = float(new_station[1])
-                route.update_time(time_route)
-                break
-                 
+                if check_connection == False:
+                    time_route = float(new_station[1])
+                    route.update_time(time_route)
+                    break     
     
             if route.current_time() > self.total_time:
                 route.update_time(- time_route)
