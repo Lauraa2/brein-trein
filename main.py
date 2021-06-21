@@ -37,8 +37,8 @@ if __name__ == "__main__":
 
     
 
-    #greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
-    #greedy_routes.print_results()
+    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
 
@@ -78,21 +78,21 @@ if __name__ == "__main__":
     all_time = []
     all_score = []
     
-    for i in range(100):
-        print(i)
+    #for i in range(100):
+        #print(i)
         # Run simulated annealing
         #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
-        greedy_routes = greedy.Greedy(data.stations, connections, time, counter)
-        SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
-        solution = SA.run(3)
-        print(solution.score)
-        p = solution.calculate_fraction_connections()
-        all_p.append(p)
+    # greedy_routes = greedy.Greedy(data.stations, connections, time, counter)
+    # SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
+    # solution = SA.run(3)
+    # print(solution.score)
+    # p = solution.calculate_fraction_connections()
+    # all_p.append(p)
 
-        score = solution.calculate_score()
-        all_score.append(score)
+    # score = solution.calculate_score()
+    # all_score.append(score)
 
-        all_time.append(solution.duration)
+    # all_time.append(solution.duration)
     
 
     with open(f'solutions/analyse/SA_nationaal/1.csv', 'w', newline='') as csvfile:
