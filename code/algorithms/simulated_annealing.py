@@ -22,7 +22,7 @@ class Simulated_annealing:
         # stores the routes from which changes will be made
         self.current_routes = self.best_routes
         # starting temperature = (max decline) / math.log(chance of approval, 2)
-        self.start_t = (-1000) / math.log(0.001, 2)
+        self.start_t = (-100) / math.log(0.001, 2)
         # Tracks how many iterations no new route has been accepted
         self.no_change = 0
 
@@ -46,8 +46,8 @@ class Simulated_annealing:
         # fast simulated annealing: https://machinelearningmastery.com/simulated-annealing-from-scratch-in-python/
         #self.T = self.T / (self.iteration + 1)
 
-        if self.no_change >= self.iterations * 0.1:
-            T = self.start_t * (0.8 ** self.iteration)
+        if self.no_change >= self.iterations * 0.15:
+            T = self.start_t * (1 ** self.iteration)
         else:
             T = self.start_t * (0.997 ** self.iteration)
         

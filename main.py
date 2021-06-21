@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     
 
-    #greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
     #greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
     solution = SA.run(1000)
     print(solution.score)
-    '''
+    
     all_p = []
     all_time = []
     all_score = []
@@ -72,14 +72,14 @@ if __name__ == "__main__":
 
         all_time.append(solution.duration)
 
-    with open(f'solutions/analyse/SA_1000.csv', 'w', newline='') as csvfile:
+    with open(f'solutions/analyse/SA_co15.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['p', all_p])
         writer.writerow(['score', all_score])
         writer.writerow(['time', all_time])
 
-    '''
-    with open(f'solutions/analyse/SA_2000.csv') as file:
+    
+    with open(f'solutions/analyse/SA_co15.csv') as file:
             reader = csv.reader(file)
             values = next(reader)
             values = next(reader)
@@ -87,13 +87,14 @@ if __name__ == "__main__":
             values = values.strip('[]').split(', ')
             values = list(map(float, values))
             average = sum(values) / len(values)
-    print(average)
     
+    print(average)
     '''
+    
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
     #results = routes.Routes.print_results(random_routes)
-    '''
+    
     # Create visualisation from our results
     #vision = vision.print_stations(network.stations, random_routes)
     print("For a random solution, type 1")
@@ -122,4 +123,4 @@ if __name__ == "__main__":
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
-    '''
+    
