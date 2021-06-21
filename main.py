@@ -72,14 +72,14 @@ if __name__ == "__main__":
 
         all_time.append(solution.duration)
 
-    with open(f'solutions/analyse/SA_100.csv', 'w', newline='') as csvfile:
+    with open(f'solutions/analyse/SA_co15.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['p', all_p])
         writer.writerow(['score', all_score])
         writer.writerow(['time', all_time])
 
     
-    with open(f'solutions/analyse/SA_100.csv') as file:
+    with open(f'solutions/analyse/SA_co15.csv') as file:
             reader = csv.reader(file)
             values = next(reader)
             values = next(reader)
@@ -88,14 +88,14 @@ if __name__ == "__main__":
             values = list(map(float, values))
 
             average = sum(values) / len(values)
-
+    
     print(average)
     '''
-    '''
+    
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
     #results = routes.Routes.print_results(random_routes)
-    '''
+    
     # Create visualisation from our results
     #vision = vision.print_stations(network.stations, random_routes)
     print("For a random solution, type 1")

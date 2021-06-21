@@ -46,8 +46,8 @@ class Simulated_annealing:
         # fast simulated annealing: https://machinelearningmastery.com/simulated-annealing-from-scratch-in-python/
         #self.T = self.T / (self.iteration + 1)
 
-        if self.no_change >= (self.iteration * 0.1):
-            T = self.start_t * (1.1 ** self.iteration)
+        if self.no_change >= self.iterations * 0.15:
+            T = self.start_t * (1 ** self.iteration)
         else:
             T = self.start_t * (0.997 ** self.iteration)
         
