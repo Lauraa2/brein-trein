@@ -1,6 +1,6 @@
 """
 # -------------------------------------------------------------------------------
-# greedy.py
+# simulated_annealing.py
 # -------------------------------------------------------------------------------
 #
 # Tries to improve a given routes solution using a hill climber method enriched with simulated annealing
@@ -10,6 +10,7 @@
 """
 
 from code.algorithms import random_alg
+from code.algorithms import hillclimber 
 
 import copy
 import random

@@ -67,14 +67,8 @@ class Greedy:
         start_station = self.get_start_station()
         route.add_station(start_station)
 
-<<<<<<< HEAD
-        while route.current_time() <= self.total_time:
-
-        # Get the connections from the currently last visited station (E)
-=======
         while route.current_time() <= self.total_time: 
         # get the connections from the last visited station 
->>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
             current_station = route.last_station()
             possible_connections = current_station.get_connections()
 
@@ -87,12 +81,9 @@ class Greedy:
             for connection in possible_connections:
                 connection_number += 1
                 new_station = connection
-<<<<<<< HEAD
-=======
 
                 # for each possible connection check to see if it already is being used
                 # if not, use this connection to get the next station
->>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
                 if (current_station.name, connection[0]) not in self.used_connections:
                     check_connection = False
                     self.used_connections.append((current_station.name, connection[0]))
@@ -141,12 +132,8 @@ class Greedy:
             
             counter += 1
         
-<<<<<<< HEAD
-        score = routes.calculate_score()
-=======
         routes.calculate_score()
         routes.print_results()
->>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
 
         return routes
 
