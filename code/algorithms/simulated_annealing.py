@@ -101,7 +101,7 @@ class Simulated_annealing:
             self.new_routes = copy.deepcopy(self.current_routes) 
             
             # change a single route
-            self.mutate_single_route()
+            hillclimber.HillClimber.mutate_single_route(self)
 
             # accept it if it is better
             self.make_decision()
