@@ -37,8 +37,6 @@ if __name__ == "__main__":
 
     
 
-    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
-    greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
 
@@ -73,26 +71,26 @@ if __name__ == "__main__":
     SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
     solution = SA.run(1000)
     print(solution.score)
-    '''
+    
+
     all_p = []
     all_time = []
     all_score = []
     
-    #for i in range(100):
-        #print(i)
-        # Run simulated annealing
-        #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
-    # greedy_routes = greedy.Greedy(data.stations, connections, time, counter)
-    # SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
-    # solution = SA.run(3)
-    # print(solution.score)
-    # p = solution.calculate_fraction_connections()
-    # all_p.append(p)
+    for i in range(100):
+        print(i)
+        # run simulated annealing
+        one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+        SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
+        solution = SA.run(3)
+        print(solution.score)
+        p = solution.calculate_fraction_connections()
+        all_p.append(p)
 
-    # score = solution.calculate_score()
-    # all_score.append(score)
+    score = solution.calculate_score()
+    all_score.append(score)
 
-    # all_time.append(solution.duration)
+    all_time.append(solution.duration)
     
 
     with open(f'solutions/analyse/SA_nationaal/1.csv', 'w', newline='') as csvfile:
@@ -121,13 +119,16 @@ if __name__ == "__main__":
     # Create visualisation from our results
     #vision = vision.print_stations(network.stations, random_routes)
     print("For a random solution, type 1")
-    print("For a HillClimber algorithm, type 2")
+    print("For a Hillclimber algorithm, type 2")
+    print("For a Greedy algorithm, type 3")
+    print("For a Simulated Annealing algorithm, typ 4")
     
     algorithm = input("Select: ")
     if int(algorithm) == 1:
         print(one_routes.calculate_score()) 
         one_routes.print_results()
-    if int(algorithm) == 2:
+    
+    elif int(algorithm) == 2:
         
         # load climber
         climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
@@ -140,6 +141,52 @@ if __name__ == "__main__":
             climber_routes = climber.run(10, 'connections')
         #print(f'max: {climber_routes.score}')
         climber_routes.print_results()
+
+    elif int(algorithm) == 3:
+        greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+        greedy_routes.print_results()
+
+    elif int(algorithm) == 4:
+        all_p = []
+        all_time = []
+        all_score = []
+        
+        for i in range(100):
+            print(i)
+            # run simulated annealing
+            one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+            SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
+            solution = SA.run(3)
+            print(solution.score)
+            p = solution.calculate_fraction_connections()
+            all_p.append(p)
+
+        score = solution.calculate_score()
+        all_score.append(score)
+
+        all_time.append(solution.duration)
+        
+
+        with open(f'solutions/analyse/SA_nationaal/1.csv', 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['p', all_p])
+            writer.writerow(['score', all_score])
+            writer.writerow(['time', all_time])
+
+        
+        with open(f'solutions/analyse/SA_nationaal/1.csv') as file:
+                reader = csv.reader(file)
+                values = next(reader)
+                values = next(reader)
+                values = values[1]
+                values = values.strip('[]').split(', ')
+                values = list(map(float, values))
+                average = sum(values) / len(values)
+        
+        print(average)
+
+
+
         
     # Run HillClimber
     #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
@@ -147,4 +194,4 @@ if __name__ == "__main__":
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
-    '''
+    

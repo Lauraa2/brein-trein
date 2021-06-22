@@ -88,4 +88,4 @@ class HillClimber:
             print('Failed to cover all connections ):')
         
         # return the final route with the highest score
-        return self.best_routess
+        return self.best_routes
