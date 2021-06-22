@@ -1,29 +1,35 @@
-import copy
-from hashlib import new
-import random
+"""
+# -------------------------------------------------------------------------------
+# greedy.py
+# -------------------------------------------------------------------------------
+#
+# Tries to improve a given routes solution using a hill climber method enriched with simulated annealing
+#
+# Team de Brein Trein
+#
+"""
+
 from code.algorithms import random_alg
 
+import copy
+import random
 import math
 
 
 class Simulated_annealing:
     """
-    The HillClimber class changes a random route in the network to a random valid route. Each improvement or
-    equivalent solution is kept for the next iteration.
+    The Simulated annealing class changes one random route from a routes solution and
+    decided whether this change is accepted based on the temperature of the system.
     """
     def __init__(self, startingroutes, stations, total_time, connections):
-        # stores the routes that currently give the best score
-        self.best_routes = startingroutes   
+        self.best_routes = startingroutes 
+        self.current_routes = self.best_routes  
         self.data_stations = stations
         self.max_time_route = total_time
         self.connections = connections
-        # stores the routes from which changes will be made
-        self.current_routes = self.best_routes
-        # starting temperature = (max decline) / math.log(chance of approval, 2)
+        
         self.start_t = (-1000) / math.log(0.001, 2)
-        # tracks how many iterations no new route has been accepted
         self.no_change = 0
-        # tracks for how many iterations the temperature has been raised
         self.counter = 0
 
     def mutate_single_route(self):
@@ -47,11 +53,12 @@ class Simulated_annealing:
         Determine the temperature of the system
         Cools the system down, unless it seems to be stuck on a value
         """
-        # Heat the system when stuck
+        # heat the system when stuck
+        # keep on heating for a given amount of iterations
         if self.no_change >= self.iterations * 0.1 or (self.counter > 0 and self.counter < (self.iterations * 0.001)):
             T = self.start_t * (1.05 ** self.iteration)
             self.counter += 1
-        # Cool the system when not stuck
+        # cool the system when not stuck
         else:   
             T = self.start_t * (0.997 ** self.iteration)
             self.counter = 0        
