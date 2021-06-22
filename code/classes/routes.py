@@ -10,7 +10,6 @@
 """
 
 import csv
-from code.visualisations import vision
 
 
 class Routes():
@@ -85,16 +84,14 @@ class Routes():
 
         # calculate score
         self.score = float(p)*10000 - (int(counter)*100 + int(self.duration))   
+
         return self.score
 
     def print_results(self):
         '''
         Method to print a csv file with results
         '''
-        # Create a unique file name
-        self.filename = vision.get_file_name(self.score, '.csv')
-
-        with open(f'solutions/csv_files/{self.filename}', 'w', newline='') as csvfile:
+        with open(f'output.csv', 'w', newline='') as csvfile:
             fieldnames = ['train', 'stations']
             thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
             thewriter.writeheader()

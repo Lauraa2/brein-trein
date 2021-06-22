@@ -156,7 +156,7 @@ if __name__ == "__main__":
     #print(climber.new_routes)
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
-    
-    #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
     '''
+    vision.draw_solution(f'output.csv', data)
+    
     
