@@ -37,7 +37,11 @@ if __name__ == "__main__":
 
     
 
+<<<<<<< HEAD
     
+=======
+    greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+>>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
     #greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
@@ -73,7 +77,7 @@ if __name__ == "__main__":
     SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
     solution = SA.run(1000)
     print(solution.score)
-    '''
+    
     all_p = []
     all_time = []
     all_score = []
@@ -113,7 +117,7 @@ if __name__ == "__main__":
             average = sum(values) / len(values)
     
     print(average)
-    '''
+    
     
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
@@ -156,6 +160,7 @@ if __name__ == "__main__":
     #print(climber.new_routes)
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
-
+    
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
     '''
+    

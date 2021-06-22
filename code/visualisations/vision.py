@@ -1,3 +1,14 @@
+"""
+# -------------------------------------------------------------------------------
+# vision.py
+# -------------------------------------------------------------------------------
+#
+# plot routes
+#
+# Team de Brein Trein
+#
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -8,11 +19,12 @@ trajecten = []
 dictionary = {}
 trein = {}
 
-def draw_solution(solution_csv, network): # The routes is needed to get all coordinates / station objects
-    """
+
+def draw_solution(solution_csv, network): 
+    '''
     Map out all routes from a specific solution
     Takes as input the solution as csv file and the network of the problem
-    """
+    '''
 
     # Different colors to plot each trajectory in
     colors = ['green', 'red', 'blue', 'lime', 'orange', 'cyan', 'yellow', 'magenta', 'black', 'blueviolet', \

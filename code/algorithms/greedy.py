@@ -1,7 +1,20 @@
-import copy
-import random
+"""
+# -------------------------------------------------------------------------------
+# greedy.py
+# -------------------------------------------------------------------------------
+#
+# Creates route and routes solutions, acquired using a greedy algorithm
+#
+# Team de Brein Trein
+#
+"""
+
 from code.classes.route import Route
 from code.classes.routes import Routes
+
+import copy
+import random
+
 
 class Greedy:
     """
@@ -25,13 +38,11 @@ class Greedy:
         """
         stations_connections = {}
 
-        #print(self.connections)
-
-        # Iterate through all possible stations
+        # iterate through all possible stations
         for station in self.copy_stations_list:
             stations_connections[station] = len(station.connections)
 
-            # Make a dictionary of all stations, sorted from few to many connections
+            # make a dictionary of all stations, sorted from few to many connections
             sorted_stations=dict(sorted(stations_connections.items(),key= lambda x:x[1], reverse=True))
 
         return sorted_stations
@@ -45,7 +56,6 @@ class Greedy:
             if station not in self.used_stations:
                 self.used_stations.append(station)
                 return station
-            #elif station in self.used_stations:
             else:
                 continue
     
@@ -57,13 +67,18 @@ class Greedy:
         start_station = self.get_start_station()
         route.add_station(start_station)
 
+<<<<<<< HEAD
         while route.current_time() <= self.total_time:
 
         # Get the connections from the currently last visited station (E)
+=======
+        while route.current_time() <= self.total_time: 
+        # get the connections from the last visited station 
+>>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
             current_station = route.last_station()
             possible_connections = current_station.get_connections()
 
-            # Heuristic chooses closest station as the next (E)
+            # heuristic chooses closest station as the next 
             possible_connections.sort(key=lambda a:float(a[1]))
 
             check_connection = True
@@ -72,18 +87,27 @@ class Greedy:
             for connection in possible_connections:
                 connection_number += 1
                 new_station = connection
+<<<<<<< HEAD
+=======
+
+                # for each possible connection check to see if it already is being used
+                # if not, use this connection to get the next station
+>>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
                 if (current_station.name, connection[0]) not in self.used_connections:
                     check_connection = False
                     self.used_connections.append((current_station.name, connection[0]))
                     random_connection_name = connection[0]
+
                     for station in self.copy_stations_list:
                         if station.name == random_connection_name:
                             route.add_station(station)
                             break
                 
+                # If all random connections are already being used, choose a random one
                 if connection_number == len(possible_connections) and check_connection == True:
                     check_connection = False
                     random_connection = random.choice(possible_connections)
+
                     for station in self.copy_stations_list:
                         if station.name == random_connection[0]:
                             route.add_station(station)
@@ -102,6 +126,10 @@ class Greedy:
         return route
     
     def get_routes(self):
+        """
+        Creates a routes solution that is filled with 
+        routes that are constructed using the greedy method
+        """
         counter = 0
         routes = Routes(self.connections) 
 
@@ -113,7 +141,12 @@ class Greedy:
             
             counter += 1
         
+<<<<<<< HEAD
         score = routes.calculate_score()
+=======
+        routes.calculate_score()
+        routes.print_results()
+>>>>>>> 36de9b9569c6ef1852feead0fd5a535c9128ceaf
 
         return routes
 
