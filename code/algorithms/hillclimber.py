@@ -1,14 +1,26 @@
+"""
+# -------------------------------------------------------------------------------
+# greedy.py
+# -------------------------------------------------------------------------------
+#
+# Uses a hill climber algorithm to improve an already existing routes solution
+# Every iteration a random route is replaced and accepted into the solution if it is an improvement
+# Improvements can be judged by score or fraction of used connections
+#
+# Team de Brein Trein
+#
+"""
+
+from code.algorithms import random_alg
+
 import copy
 import random
-from code.classes import network, routes, route
-from code.classes.routes import Routes
-from code.algorithms import random_alg
 
 
 class HillClimber:
     """
-    The HillClimber class changes a random route in the network to a random valid route. Each improvement or
-    equivalent solution is kept for the next iteration.
+    The HillClimber class changes a random route in the network to a random valid route
+    Each improvement or equivalent solution is kept for the next iteration
     """
     def __init__(self, startingroutes, stations, total_time, connections):
         self.best_routes = startingroutes   
@@ -34,8 +46,8 @@ class HillClimber:
 
     def compare_score(self):
         """
-        Checks and accepts better solutions than the current solution.
-        Judgement is based on quality score.
+        Checks and accepts better solutions than the current solution
+        Judgement is based on quality score
         """
         # calculate the score of the old and the new route
         old_score = self.best_routes.calculate_score()
@@ -49,6 +61,10 @@ class HillClimber:
             self.best_routes = self.new_routes
 
     def compare_connections(self):
+        """
+        Checks and accepts better solutions than the current solution
+        Judgement is based on the fraction of used connections
+        """
         old_fraction = self.best_routes.calculate_fraction_connections()
         new_fraction = self.new_routes.calculate_fraction_connections()
 
@@ -69,7 +85,7 @@ class HillClimber:
         
         for iteration in range(iterations):
             # create a copy of the graph to simulate the change
-            self.new_routes = copy.deepcopy(self.best_routes) # Dit self. gemaakt omdat het overal wordt opgeroepen
+            self.new_routes = copy.deepcopy(self.best_routes) 
             
             # change a single route
             self.mutate_single_route()
@@ -86,5 +102,4 @@ class HillClimber:
         if type == 'connections':
             print('Failed to cover all connections ):')
         
-        # return the final route with the highest score
         return self.best_routes
