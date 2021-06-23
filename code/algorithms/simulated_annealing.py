@@ -9,7 +9,7 @@
 #
 """
 
-from code.algorithms import random_alg
+from code.algorithms import random_alg, hillclimber
 
 import copy
 import random
@@ -31,22 +31,6 @@ class Simulated_annealing:
         self.start_t = (-1000) / math.log(0.001, 2)
         self.no_change = 0
         self.counter = 0
-
-    def mutate_single_route(self):
-        """
-        Change out a single route for another random route
-        """
-        # remove a random route first
-        random_route = random.choice(self.new_routes.routes)
-        self.new_routes.remove_route(random_route)
-        self.new_routes.update_duration(- random_route.duration)
-
-        # render a new random route 
-        new_single_route = random_alg.get_random_route(self.data_stations, self.max_time_route)
-        #new_single_route = greedy.Greedy.get_route()
-        # append the new route to the list of routes and update the duration
-        self.new_routes.add_route(new_single_route)
-        self.new_routes.update_duration(new_single_route.duration)
 
     def determine_T(self):
         """
@@ -100,7 +84,7 @@ class Simulated_annealing:
             self.new_routes = copy.deepcopy(self.current_routes) 
             
             # change a single route
-            self.mutate_single_route()
+            hillclimber.HillClimber.mutate_single_route(self)
 
             # accept it if it is better
             self.make_decision()
