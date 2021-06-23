@@ -52,9 +52,6 @@ class HillClimber:
         # calculate the score of the old and the new route
         old_score = self.best_routes.calculate_score()
         new_score = self.new_routes.calculate_score()
-        
-        print(old_score)
-        print(new_score) 
 
         # update the score and route if the new route is better than the old route
         if new_score > old_score:
@@ -67,9 +64,6 @@ class HillClimber:
         """
         old_fraction = self.best_routes.calculate_fraction_connections()
         new_fraction = self.new_routes.calculate_fraction_connections()
-
-        print(old_fraction)
-        print(new_fraction)
 
         if new_fraction > old_fraction:
             self.best_routes = self.new_routes
