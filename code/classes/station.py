@@ -12,7 +12,7 @@
 class Station():
     def __init__(self, name, x, y):
         '''
-        Station objects
+        Station attributes
         '''
         self.name = name
         self.x = x 

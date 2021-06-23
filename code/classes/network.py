@@ -16,7 +16,7 @@ from .station import Station
 class Network():
     def __init__(self, stationfile, connectionfile):
         '''
-        Objects of network
+        Network attributes
         '''
         self.stations = self.load_station(stationfile)
         self.stationfile = stationfile
@@ -68,16 +68,4 @@ class Network():
                 connections.append((station.name, connection))
         return connections
 
-    def print_csv(self):
-        '''
-        Method to print the csv file with output
-        '''
-        with open('data.csv', 'w', newline='') as csvfile:
-            fieldnames = ['train', 'stations', 'connections', 'y', 'x']
-            thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
-            thewriter.writeheader()
-            trains_count = 0
-
-            for station in self.stations.values():
-                trains_count += 1
-                thewriter.writerow({'train': trains_count, 'stations': station.name, 'connections': station.connections, 'y': station.x, 'x': station.y})
+   

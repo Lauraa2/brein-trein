@@ -111,6 +111,8 @@ if __name__ == "__main__":
             values = list(map(float, values))
 
             average = sum(values) / len(values)
+            min = min(values)
+            max = max(values)
     
     print(average)
     
@@ -154,7 +156,7 @@ if __name__ == "__main__":
     # Run HillClimber
     #climber = hillclimber.HillClimber(one_routes, data.stations, time, connections)
     #print(climber.new_routes)
-    # climber_routes = climber.run(1000000, 'connections')
+    # climber_routes = climber.run(10000, score)
     # climber_routes.print_results()
     '''
     vision.draw_solution(f'output.csv', data)
