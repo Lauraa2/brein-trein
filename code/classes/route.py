@@ -12,7 +12,7 @@
 class Route():
     def __init__(self):
         '''
-        Objects of a route
+        route attributes
         '''
         self.stations = []
         self.duration = 0

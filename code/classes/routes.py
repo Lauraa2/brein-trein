@@ -15,7 +15,7 @@ import csv
 class Routes():
     def __init__(self, connections):
         '''
-        routes objects
+        routes attributes
         '''
         self.connections = connections
         self.routes = []

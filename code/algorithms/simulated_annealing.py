@@ -43,7 +43,7 @@ class Simulated_annealing:
 
         # render a new random route 
         new_single_route = random_alg.get_random_route(self.data_stations, self.max_time_route)
-
+        #new_single_route = greedy.Greedy.get_route()
         # append the new route to the list of routes and update the duration
         self.new_routes.add_route(new_single_route)
         self.new_routes.update_duration(new_single_route.duration)
