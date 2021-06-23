@@ -74,7 +74,7 @@ if __name__ == "__main__":
         if int(focus) == 1:
             climber_routes = climber.run(1000, 'score')
         elif int(focus) == 2:
-            climber_routes = climber.run(1000, 'connections')
+            climber_routes = climber.run(10000, 'connections')
 
         # print the result
         print(f'max: {climber_routes.score}')
@@ -86,6 +86,7 @@ if __name__ == "__main__":
 
         # load climber
         greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+        greedy_routes = greedy_routes.get_routes()
         climber = hillclimber.HillClimber(greedy_routes, data.stations, time, connections)
 
         # ask for the aim of the hillclimber
@@ -97,7 +98,7 @@ if __name__ == "__main__":
         if int(focus) == 1:
             climber_routes = climber.run(1000, 'score')
         elif int(focus) == 2:
-            climber_routes = climber.run(1000, 'connections')
+            climber_routes = climber.run(10000, 'connections')
         
         # print the result
         print(f'max: {climber_routes.score}')
@@ -121,6 +122,7 @@ if __name__ == "__main__":
     elif int(algorithm) == 6:
         # run simulated annealing based on greedy
         greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+        greedy_routes = greedy_routes.get_routes()
         SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
         solution = SA.run(1000)
         
@@ -131,5 +133,3 @@ if __name__ == "__main__":
         solution.print_results()
 
     vision.draw_solution(f'output.csv', data)
-    
-    

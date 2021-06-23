@@ -30,7 +30,6 @@ class Greedy:
         self.smallest_stations = self.get_smallest_stations()
         self.used_stations = []
         self.used_connections = []
-        self.get_routes()
     
     def get_smallest_stations(self):
         """
