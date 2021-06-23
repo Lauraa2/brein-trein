@@ -88,7 +88,6 @@ class Greedy:
                     check_connection = False
                     self.used_connections.append((current_station.name, connection[0]))
                     random_connection_name = connection[0]
-
                     for station in self.copy_stations_list:
                         if station.name == random_connection_name:
                             route.add_station(station)

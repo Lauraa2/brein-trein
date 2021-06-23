@@ -81,9 +81,6 @@ def draw_solution(solution_csv, network):
     plt.legend(loc='upper left')
     plt.title(f'score = {score}')
 
-    filename = get_file_name(score, '.png')
-    plt.savefig(f'solutions/images/{filename}')
+    plt.savefig(f'plot.png')
 
-def get_file_name(quality, type):
-            filename = 'solution_' + str(quality) + type
-            return filename
+
