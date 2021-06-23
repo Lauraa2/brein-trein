@@ -27,7 +27,7 @@ class Simulated_annealing:
         self.data_stations = stations
         self.max_time_route = total_time
         self.connections = connections
-        
+        # determine the start temperature = (biggest possible decline) / log(acceptance probability, 2)
         self.start_t = (-1000) / math.log(0.001, 2)
         self.no_change = 0
         self.counter = 0
@@ -53,7 +53,7 @@ class Simulated_annealing:
         Determine the temperature of the system
         Cools the system down, unless it seems to be stuck on a value
         """
-        # heat the system when stuck
+        # heat the system when stuck for a given amount of iterations
         # keep on heating for a given amount of iterations
         if self.no_change >= self.iterations * 0.1 or (self.counter > 0 and self.counter < (self.iterations * 0.001)):
             T = self.start_t * (1.05 ** self.iteration)
