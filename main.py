@@ -36,43 +36,48 @@ if __name__ == "__main__":
     connections = data.get_connections()
 
     
-
+    for i in range(100):
+        one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+        print(one_routes.calculate_score())
+    #greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
 
     # Create random routes and print results
     #one_route = random_alg.get_random_route(data.stations, time)
     #print(one_route.stations)
-    one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+    #one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
     #new_routes = routes.Routes(one_route)
+    
+    # with open(f'solutions/analyse/SA.csv') as file:
+    #     reader = csv.reader(file)
+    #     values = next(reader)
+    #     values = next(reader)
+    #     values = values[1]
+    #     values = values.strip('[]').split(', ')
+    #     values = list(map(float, values))
+
+    # times = []
+    # for i in range(1000):
+    #     times.append(i)
+
+
+    # plt.plot(times, values, marker='o', color='#5f8195')
+    # plt.axis([0, 1000, 4000, 8000])
+    # plt.xlabel('aantal trajecten')
+    # plt.xticks(times)
+    # plt.ylabel('gemiddelde p')
+    # plt.savefig('solutions/analyse/SA.png')
+
+    
+    # one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+    # SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
+    # solution = SA.run(1000)
+    # greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
+    # solution = greedy_routes.run()
+
+    # print(solution.score)
     '''
-    with open(f'solutions/analyse/SA.csv') as file:
-        reader = csv.reader(file)
-        values = next(reader)
-        values = next(reader)
-        values = values[1]
-        values = values.strip('[]').split(', ')
-        values = list(map(float, values))
-
-    times = []
-    for i in range(1000):
-        times.append(i)
-
-
-    plt.plot(times, values, marker='o', color='#5f8195')
-    plt.axis([0, 1000, 4000, 8000])
-    plt.xlabel('aantal trajecten')
-    plt.xticks(times)
-    plt.ylabel('gemiddelde p')
-    plt.savefig('solutions/analyse/SA.png')
-
-    
-    one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
-    SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
-    solution = SA.run(1000)
-    print(solution.score)
-    
-
     all_p = []
     all_time = []
     all_score = []
@@ -80,17 +85,24 @@ if __name__ == "__main__":
     for i in range(100):
         print(i)
         # run simulated annealing
-        one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
-        SA = simulated_annealing.Simulated_annealing(greedy_routes, data.stations, time, connections)
-        solution = SA.run(3)
-        print(solution.score)
+        # one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
+        # greedy_routes = greedy.Greedy(data.stations, time, connections, counter).get_routes()
+        # climber = hillclimber.HillClimber(greedy_routes, data.stations, time, connections)
+        # SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
+        #solution = SA.run(1000)
+        # SA = simulated_annealing.Simulated_annealing(one_routes, data.stations, time, connections)
+        # solution = SA.run(1000)
+        solution = greedy.Greedy(data.stations, time, connections, counter)
+        print(solution)
+        # print(solution.score)
         p = solution.calculate_fraction_connections()
+        print(p)
         all_p.append(p)
+        score = solution.calculate_score()
+        print(score)
+        all_score.append(score)
 
-    score = solution.calculate_score()
-    all_score.append(score)
-
-    all_time.append(solution.duration)
+        all_time.append(solution.duration)
     
 
     with open(f'solutions/analyse/SA_nationaal/1.csv', 'w', newline='') as csvfile:
@@ -108,10 +120,14 @@ if __name__ == "__main__":
             values = values.strip('[]').split(', ')
             values = list(map(float, values))
             average = sum(values) / len(values)
+            minvalue = min(values)
+            maxvalue = max(values)
     
     print(average)
+    print(minvalue)
+    print(maxvalue)
     '''
-    
+    '''
     #stations = random.get_random_routes(network.stations, connections)
     #route = route.Route(stations)
     #results = routes.Routes.print_results(random_routes)
@@ -193,5 +209,7 @@ if __name__ == "__main__":
     #print(climber.new_routes)
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
+    
     #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
+    '''
     

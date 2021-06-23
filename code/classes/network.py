@@ -1,21 +1,33 @@
+"""
+# -------------------------------------------------------------------------------
+# network.py
+# -------------------------------------------------------------------------------
+#
+# load stations, load connections and print csv 
+#
+# Team de Brein Trein
+#
+"""
+
 import csv
 from .station import Station
-from .routes import Routes
-import random
 
 
 class Network():
     def __init__(self, stationfile, connectionfile):
+        '''
+        Objects of network
+        '''
         self.stations = self.load_station(stationfile)
         self.stationfile = stationfile
         self.connectionfile = connectionfile
         self.load_connections(connectionfile)
         self.get_connections()        
-        
+           
     def load_station(self, stationfile):
-        """
-        Load all the stations
-        """
+        '''
+        Load all stations 
+        '''
         stations = {}
 
         with open(stationfile) as in_file:
@@ -27,9 +39,9 @@ class Network():
         return stations 
 
     def load_connections(self, connectionfile):
-        """
+        '''
         Loads all the connections to the stations into the loaded nodes (stations) 
-        """
+        '''
         with open(connectionfile) as in_file:
             reader = csv.DictReader(in_file)
             
@@ -47,17 +59,19 @@ class Network():
                     self.stations[connection].add_connection(station, distance)
 
     def get_connections(self):
+        '''
+        Get connections of station
+        '''
         connections = []
         for station in self.stations.values():
             for connection in station.connections:
                 connections.append((station.name, connection))
         return connections
 
-
     def print_csv(self):
-        """
+        '''
         Method to print the csv file with output
-        """
+        '''
         with open('data.csv', 'w', newline='') as csvfile:
             fieldnames = ['train', 'stations', 'connections', 'y', 'x']
             thewriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
