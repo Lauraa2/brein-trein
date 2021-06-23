@@ -60,6 +60,7 @@ class Routes():
 
                 if check != False:
                     connections_used.append((start_station.name, end_station.name))
+                    connections_used.append((end_station.name, start_station.name))
         
         # calculate p
         fraction = len(connections_used)/len(self.connections)
