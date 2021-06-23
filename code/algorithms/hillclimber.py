@@ -37,6 +37,7 @@ class HillClimber:
         self.new_routes.remove_route(random_route)
         self.new_routes.update_duration(- random_route.duration)
 
+
         # render a new random route 
         new_single_route = random_alg.get_random_route(self.data_stations, self.max_time_route)
 
@@ -52,7 +53,7 @@ class HillClimber:
         # calculate the score of the old and the new route
         old_score = self.best_routes.calculate_score()
         new_score = self.new_routes.calculate_score()
-
+        
         # update the score and route if the new route is better than the old route
         if new_score > old_score:
             self.best_routes = self.new_routes

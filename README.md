@@ -8,7 +8,7 @@ Bij deze case hadden wij 2 opdrachten: allereerst moesten wij een lijnvoering ma
 
 
 ## Aanpak
-Wij hebben verschillende algoritmes geprobeerd om een zo hoog mogelijk scorende lijnvoering te maken tussen intercity stations in Noord- en Zuid-Holland en Nederland. Deze zullen wij hieronder even uitleggen:
+Wij hebben verschillende algoritmes geprobeerd om een zo hoog mogelijk scorende lijnvoering te maken tussen intercitystations in Noord- en Zuid-Holland en Nederland. Deze zullen wij hieronder even uitleggen:
 
 
 ### Random algoritme
@@ -16,7 +16,7 @@ Wij zijn begonnen met een random algoritme. Hierbij pakte wij telkens een random
 
 
 ### Hill climber
-Bij Hill climber heb je een random route en deze vergelijk je steeds met een andere random route. Degene met de hoogste score houd je vast. Dit herhaal je steeds tot een gegeven aantal keer.
+Bij Hill climber heb je een random route en deze vergelijk je steeds met een andere random route. De betere oplossing houd je vast. Dit herhaal je steeds tot een gegeven aantal keer. Wanneer we alle connecties willen berijden willen we dat de betere oplossing wordt beoordeeld op basis van hoeveel connecties er al bereden zijn, kies hiervoor om te focussen op connecties. Wanneer we een zo hoog mogelijke score willen behalen, kiezen we om te focussen op score.
 
 
 ### Greedy
@@ -29,7 +29,7 @@ Bij simulated annealing pakken wij eerst een greedy lijnvoering. Deze gaan wij t
 
 ## Aan de slag 
 
-1. Instaleer python en Pip
+1. Installeer python en Pip
 
 2. clone de repository (in terminal) of download het als zip bestand (klik op groene button rechts bovenin):
 ```

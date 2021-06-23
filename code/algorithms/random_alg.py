@@ -73,4 +73,7 @@ def get_random_routes(network, connections, total_time, total_counter):
         
         counter += 1
 
+    routes.calculate_score()
+    #routes.print_results()
+    
     return routes

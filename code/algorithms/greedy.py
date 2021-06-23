@@ -135,7 +135,3 @@ class Greedy:
         routes.print_results()
 
         return routes
-
-            
-            
-            
