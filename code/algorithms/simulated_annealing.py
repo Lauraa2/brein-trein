@@ -33,22 +33,6 @@ class Simulated_annealing:
         self.no_change = 0
         self.counter = 0
 
-    def mutate_single_route(self):
-        """
-        Change out a single route for another random route
-        """
-        # remove a random route first
-        random_route = random.choice(self.new_routes.routes)
-        self.new_routes.remove_route(random_route)
-        self.new_routes.update_duration(- random_route.duration)
-
-        # render a new random route 
-        new_single_route = random_alg.get_random_route(self.data_stations, self.max_time_route)
-
-        # append the new route to the list of routes and update the duration
-        self.new_routes.add_route(new_single_route)
-        self.new_routes.update_duration(new_single_route.duration)
-
     def determine_T(self):
         """
         Determine the temperature of the system
