@@ -39,6 +39,8 @@ if __name__ == "__main__":
     for i in range(100):
         one_routes = random_alg.get_random_routes(data.stations, connections, time, counter)
         print(one_routes.calculate_score())
+
+    #greedy_routes = greedy.Greedy(data.stations, time, connections, counter)
     #greedy_routes.print_results()
 
     #sroute = route.Route(network.stations)
@@ -210,6 +212,6 @@ if __name__ == "__main__":
     # climber_routes = climber.run(1000000, 'connections')
     # climber_routes.print_results()
     
-    #vision.draw_solution(f'solutions/csv_files/{run_climber.filename}', data)
+    vision.draw_solution(f'output.csv', data)
     '''
     
